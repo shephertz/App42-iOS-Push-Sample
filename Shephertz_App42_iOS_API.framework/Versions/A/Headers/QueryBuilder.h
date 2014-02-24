@@ -11,6 +11,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Query.h"
+#import "GeoQuery.h"
+#import "GeoTag.h"
+
 @interface QueryBuilder : NSObject
 
 /**
@@ -21,7 +24,7 @@
  * @throws JSONException
  */
 
-+(Query*)buildQueryWithKey:(NSString*)key value:(id)value operator:(NSString*)op;
++(Query*)buildQueryWithKey:(NSString*)key value:(id)value andOperator:(NSString*)op;
 
 /**
  * @param q1
@@ -30,5 +33,23 @@
  * @return Query object
  */
 +(Query*)combineQuery:(Query*)q1 withQuery:(Query*)q2 usingOperator:(NSString*)op;
+
+
+/**
+ * @param getTag
+ * @param op
+ * @return
+ * @throws JSONException
+ */
++(GeoQuery*) buildGeoQueryWithTag:(GeoTag*)geoTag andOperator:(NSString*)op;
+
+/**
+ * @param getTag
+ * @param op
+ * @param maxDistance
+ * @return
+ * @throws JSONException
+ */
++(GeoQuery*)buildGeoQueryWithTag:(GeoTag*)geoTag andOperator:(NSString*)op maxDistance:(double) maxDistance;
 
 @end

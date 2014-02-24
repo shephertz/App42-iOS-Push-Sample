@@ -13,6 +13,7 @@
 
 @class Storage;
 @class Query;
+@class GeoQuery;
 /**
  * Storage service on cloud provides the way to store the JSON document in NoSQL
  * database running on cloud. One can store the JSON document, update it ,
@@ -317,4 +318,88 @@
               collectionName:(NSString*)collectionName
                        docId:(NSString*) docId
                   andAclList:(NSArray*) aclList;
+
+-(App42Response*) deleteAllDocuments:(NSString*)dbName collectionName:(NSString*) collectionName;
+-(Storage*)findDocumentsByLocation:(NSString*)dbName collectionName:(NSString*)collectionName geoQuery:(GeoQuery*)query;
+/**
+ * Delete target document using key and value from given db and collection.
+ * The key value will be searched in the JSON doc stored on the cloud and
+ * matching value will be deleted.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc needs to be searched
+ * @param key
+ *            - Unique key handler
+ * @param value
+ *            - Unique value handler
+ *
+ * @return App42Response object if deleted successfully
+ *
+ * @throws App42Exception
+ *
+ */
+-(App42Response*)deleteDocumentsByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value;
+
+/**
+ * Update target document using key value search parameter. This key value
+ * pair will be searched in the JSON doc stored in the cloud and matching
+ * Doc will be updated with new value passed. If match document is not found it will insert the json
+ * doc with that key value
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc needs to be searched
+ * @param key
+ *            - Key to be searched for target JSON doc
+ * @param value
+ *            - Value to be searched for target JSON doc
+ * @param newJsonDoc
+ *            - New Json document to be added
+ *
+ * @return Storage object
+ *
+ * @throws App42Exception
+ *
+ */
+
+-(Storage*) saveOrUpdateDocumentByKeyValue:(NSString*)dbName
+                            collectionName:(NSString*)collectionName
+                                       key:(NSString*)key
+                                     value:(NSString*)value
+                                newJsonDoc:(NSString*)newJsonDoc;
+
+/**
+ * Update target document using key value search parameter. This key value
+ * pair will be searched in the JSON doc stored in the cloud and matching
+ * Doc will be updated with new value passed. If match document is not found it will insert the json
+ * doc with that key value
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc needs to be searched
+ * @param key
+ *            - Key to be searched for target JSON doc
+ * @param value
+ *            - Value to be searched for target JSON doc
+ * @param dataDict
+ *            - New JsonObject document to be added
+ *
+ * @return Storage object
+ *
+ * @throws App42Exception
+ *
+ */
+
+-(Storage*) saveOrUpdateDocumentByKeyValue:(NSString*)dbName
+                            collectionName:(NSString*)collectionName
+                                       key:(NSString*)key
+                                     value:(NSString*)value
+                                  dataDict:(NSDictionary*)dataDict;
+
+
+
 @end

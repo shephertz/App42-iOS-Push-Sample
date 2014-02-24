@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Storage;
 
+@class Storage;
+@class GeoTag;
 /**
  * An inner class that contains the remaining properties of the Storage.
  *
@@ -45,6 +46,11 @@
  *set and get the storageObject for JSONDocument Object.
  */
 @property(nonatomic,retain)Storage *storageObject;
+
+/*!
+ *set and get the GeoTag for JSONDocument Object.
+ */
+@property(nonatomic,retain) GeoTag *loc;
 
 - (id) init __attribute__((unavailable));
 

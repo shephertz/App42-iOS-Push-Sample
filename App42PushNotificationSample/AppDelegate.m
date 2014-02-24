@@ -10,8 +10,9 @@
 #import "ViewController.h"
 #import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
-#define APP42_APP_KEY       @"App42_App_Key"
-#define APP42_SECRET_KEY    @"App42_Secret_Key"
+#define APP42_APP_KEY       @"3c1d8c1d23e1dde0d820b06e33e6260e3b9ac0438d522a4ac9d524fc12cb8559"
+#define APP42_SECRET_KEY    @"254964c8a7fcc95cee0362adc2e0e06e0a64ec53c7a9e5279c11b3c4303edf73"
+
 
 @implementation AppDelegate
 
@@ -37,7 +38,9 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    [App42API initializeWithAPIKey:APP42_APP_KEY andSecretKey:APP42_SECRET_KEY]; 
+    [App42API initializeWithAPIKey:APP42_APP_KEY andSecretKey:APP42_SECRET_KEY];
+    [App42API setCacheStoragePolicy:0];
+    [App42API enableApp42Trace:YES];
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
@@ -53,7 +56,7 @@
     @try
     {
         PushNotificationService *pushObj=[App42API buildPushService];
-        [pushObj registerDeviceToken:deviceToken withUser:@"User Name"];
+        [pushObj registerDeviceToken:deviceToken withUser:@"IPhoneTesting"];
         [pushObj release];
     }
     @catch (App42Exception *exception)
@@ -84,6 +87,8 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
         NSLog(@"%s ..error=%@",__FUNCTION__,error);
+    [self registerDeviceTokenToApp42Server:@"b1d6b70a7fe5a29be43b823f7bd3aa072f60d849c931b3465915773b835f00f3"];
+    [_viewController setDeviceToken:@"b1d6b70a7fe5a29be43b823f7bd3aa072f60d849c931b3465915773b835f00f3"];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

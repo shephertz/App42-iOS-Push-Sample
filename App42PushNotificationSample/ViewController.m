@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
+#define DOC_NAME @"jsonDocument2"
+#define COLLECTION_NAME @"TestDoc"
+
 @interface ViewController ()
 
 @end
@@ -20,25 +23,111 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    indicator.hidden = YES;
+    docIDArray = nil;
 }
 
 
+-(IBAction)addItem:(id)sender 
+{
+    
+    
+    if (valueView.isFirstResponder)
+    {
+        [valueView resignFirstResponder];
+    }
+    indicator.hidden = NO;
+    [indicator startAnimating];
+    {
+        @try
+        {
+            PushNotificationService *pushObj=[App42API buildPushService];
+            PushNotification *push = [pushObj registerDeviceToken:deviceToken withUser:@"IPhoneTesting"];
+            responseView.text = push.strResponse;
+            [pushObj release];
+        }
+        @catch (App42Exception *exception)
+        {
+            NSLog(@"Reason = %@",exception.reason);
+        }
+        @finally
+        {
+            
+        }
+    }
+//    NSString *str = valueView.text;
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:str,@"value", nil];
+//    StorageService *storageService = [App42API buildStorageService];
+//    Storage *storage=[storageService insertJSONDocument:DOC_NAME collectionName:COLLECTION_NAME json:[dict JSONRepresentation]];
+    
+    [indicator stopAnimating];
+    indicator.hidden = YES;
+}
+
+-(IBAction)getItems:(id)sender
+{
+    if (docIDArray)
+    {
+        [docIDArray release];
+        docIDArray = nil;
+    }
+    docIDArray = [[NSMutableArray alloc] initWithCapacity:0];
+    indicator.hidden = NO;
+    [indicator startAnimating];
+    if (valueView.isFirstResponder)
+    {
+        [valueView resignFirstResponder];
+    }
+    StorageService *storageService = [App42API buildStorageService];
+    Storage *storage=[storageService findAllDocuments:DOC_NAME collectionName:COLLECTION_NAME];
+    responseView.text = storage.strResponse;
+    int count = [[storage jsonDocArray] count];
+    for (int i=0; i<count; i++)
+    {
+        [docIDArray addObject:[[[storage jsonDocArray] objectAtIndex:i] docId]];
+    }
+    [indicator stopAnimating];
+    indicator.hidden = YES;
+}
+
+-(IBAction)deleteData:(id)sender
+{
+    indicator.hidden = NO;
+    [indicator startAnimating];
+    StorageService *storageService = [App42API buildStorageService];
+    
+    for (int i=0; i<[docIDArray count]-2; i++)
+    {
+        App42Response *response = [storageService deleteDocumentById:DOC_NAME collectionName:COLLECTION_NAME docId:[docIDArray objectAtIndex:i]];
+        responseView.text = response.strResponse;
+    }
+    [indicator stopAnimating];
+    indicator.hidden = YES;
+}
+
 -(IBAction)sendPushButtonAction:(id)sender
 {
-    [self sendPush:@"Hello, Ur Friend has poked you!" toUser:@"User Name"];
+    [self sendPush:@"Hello, Ur Friend has poked you!" toUser:@"IPhoneTesting"];
 }
 
 -(void)sendPush:(NSString*)message toUser:(NSString*)userName
 {
     @try
     {
+        indicator.hidden = NO;
+        [indicator startAnimating];
+        
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:message forKey:@"alert"];
         [dictionary setObject:@"default" forKey:@"sound"];
         [dictionary setObject:@"2" forKey:@"badge"];
         
         PushNotificationService *pushObj=[App42API buildPushService];
-        [pushObj sendPushMessageToUser:userName withMessageDictionary:dictionary];
+        PushNotification *push = [pushObj sendPushMessageToUser:userName withMessageDictionary:dictionary];
+        responseView.text = push.strResponse;
+        [indicator stopAnimating];
+        indicator.hidden = YES;
+
         [pushObj release];
     }
     @catch (App42Exception *exception)

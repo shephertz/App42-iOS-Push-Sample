@@ -19,8 +19,7 @@
 		D77EC89C17A671410090378E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D77EC89B17A671410090378E /* ViewController.m */; };
 		D77EC89F17A671410090378E /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EC89D17A671410090378E /* ViewController_iPhone.xib */; };
 		D77EC8A217A671410090378E /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EC8A017A671410090378E /* ViewController_iPad.xib */; };
-		D77EC8A917A671530090378E /* Shephertz_App42_iOS_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77EC8A817A671520090378E /* Shephertz_App42_iOS_API.framework */; };
-		D7CDE28F17ABA5A00094575D /* AppDelegate+MyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CDE28E17ABA5A00094575D /* AppDelegate+MyApp.m */; };
+		D796B3CD1833597400E93ADA /* Shephertz_App42_iOS_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D796B3CC1833597400E93ADA /* Shephertz_App42_iOS_API.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,9 +40,7 @@
 		D77EC89B17A671410090378E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D77EC89E17A671410090378E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		D77EC8A117A671410090378E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		D77EC8A817A671520090378E /* Shephertz_App42_iOS_API.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shephertz_App42_iOS_API.framework; sourceTree = "<group>"; };
-		D7CDE28D17ABA5A00094575D /* AppDelegate+MyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+MyApp.h"; sourceTree = "<group>"; };
-		D7CDE28E17ABA5A00094575D /* AppDelegate+MyApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+MyApp.m"; sourceTree = "<group>"; };
+		D796B3CC1833597400E93ADA /* Shephertz_App42_iOS_API.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shephertz_App42_iOS_API.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +49,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D77EC88317A671410090378E /* UIKit.framework in Frameworks */,
+				D796B3CD1833597400E93ADA /* Shephertz_App42_iOS_API.framework in Frameworks */,
 				D77EC88517A671410090378E /* Foundation.framework in Frameworks */,
 				D77EC88717A671410090378E /* CoreGraphics.framework in Frameworks */,
-				D77EC8A917A671530090378E /* Shephertz_App42_iOS_API.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +78,7 @@
 		D77EC88117A671410090378E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D77EC8A817A671520090378E /* Shephertz_App42_iOS_API.framework */,
+				D796B3CC1833597400E93ADA /* Shephertz_App42_iOS_API.framework */,
 				D77EC88217A671410090378E /* UIKit.framework */,
 				D77EC88417A671410090378E /* Foundation.framework */,
 				D77EC88617A671410090378E /* CoreGraphics.framework */,
@@ -98,8 +95,6 @@
 				D77EC89B17A671410090378E /* ViewController.m */,
 				D77EC89D17A671410090378E /* ViewController_iPhone.xib */,
 				D77EC8A017A671410090378E /* ViewController_iPad.xib */,
-				D7CDE28D17ABA5A00094575D /* AppDelegate+MyApp.h */,
-				D7CDE28E17ABA5A00094575D /* AppDelegate+MyApp.m */,
 				D77EC88917A671410090378E /* Supporting Files */,
 			);
 			path = App42PushNotificationSample;
@@ -189,7 +184,6 @@
 				D77EC88F17A671410090378E /* main.m in Sources */,
 				D77EC89317A671410090378E /* AppDelegate.m in Sources */,
 				D77EC89C17A671410090378E /* ViewController.m in Sources */,
-				D7CDE28F17ABA5A00094575D /* AppDelegate+MyApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +286,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/shephertztechnologies/Desktop/Rajeev/APP42_SDK/App42_iOS_API/Products,
+					"/Users/shephertztechnologies/Desktop/Rajeev/App42Samples/App42-iOS-Push-Sample",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App42PushNotificationSample/App42PushNotificationSample-Prefix.pch";
@@ -311,7 +307,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/shephertztechnologies/Desktop/Rajeev/APP42_SDK/App42_iOS_API/Products,
+					"/Users/shephertztechnologies/Desktop/Rajeev/App42Samples/App42-iOS-Push-Sample",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App42PushNotificationSample/App42PushNotificationSample-Prefix.pch";

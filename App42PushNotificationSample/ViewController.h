@@ -11,10 +11,18 @@
 @interface ViewController : UIViewController
 {
     IBOutlet UILabel *pushNotification;
+    IBOutlet UITextView *responseView;
+    IBOutlet UITextField *valueView;
+    IBOutlet UIActivityIndicatorView *indicator;
+    NSMutableArray *docIDArray;
 }
+
 @property(nonatomic,retain) NSString *deviceToken;
 
 -(IBAction)sendPushButtonAction:(id)sender;
 -(void)updatePushMessageLabel:(NSString*)message;
 -(void)setEvent:(NSString*)eventName forModule:(NSString*)module;
+-(IBAction)addItem:(id)sender;
+-(IBAction)getItems:(id)sender;
+-(IBAction)deleteData:(id)sender;
 @end
