@@ -28,7 +28,7 @@
 }
 
 
--(IBAction)addItem:(id)sender 
+-(IBAction)registerDeviceToken:(id)sender 
 {
     
     
@@ -55,55 +55,11 @@
             
         }
     }
-//    NSString *str = valueView.text;
-//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:str,@"value", nil];
-//    StorageService *storageService = [App42API buildStorageService];
-//    Storage *storage=[storageService insertJSONDocument:DOC_NAME collectionName:COLLECTION_NAME json:[dict JSONRepresentation]];
     
     [indicator stopAnimating];
     indicator.hidden = YES;
 }
 
--(IBAction)getItems:(id)sender
-{
-    if (docIDArray)
-    {
-        [docIDArray release];
-        docIDArray = nil;
-    }
-    docIDArray = [[NSMutableArray alloc] initWithCapacity:0];
-    indicator.hidden = NO;
-    [indicator startAnimating];
-    if (valueView.isFirstResponder)
-    {
-        [valueView resignFirstResponder];
-    }
-    StorageService *storageService = [App42API buildStorageService];
-    Storage *storage=[storageService findAllDocuments:DOC_NAME collectionName:COLLECTION_NAME];
-    responseView.text = storage.strResponse;
-    int count = [[storage jsonDocArray] count];
-    for (int i=0; i<count; i++)
-    {
-        [docIDArray addObject:[[[storage jsonDocArray] objectAtIndex:i] docId]];
-    }
-    [indicator stopAnimating];
-    indicator.hidden = YES;
-}
-
--(IBAction)deleteData:(id)sender
-{
-    indicator.hidden = NO;
-    [indicator startAnimating];
-    StorageService *storageService = [App42API buildStorageService];
-    
-    for (int i=0; i<[docIDArray count]-2; i++)
-    {
-        App42Response *response = [storageService deleteDocumentById:DOC_NAME collectionName:COLLECTION_NAME docId:[docIDArray objectAtIndex:i]];
-        responseView.text = response.strResponse;
-    }
-    [indicator stopAnimating];
-    indicator.hidden = YES;
-}
 
 -(IBAction)sendPushButtonAction:(id)sender
 {
@@ -217,6 +173,46 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(IBAction)getItems:(id)sender
+{
+    if (docIDArray)
+    {
+        [docIDArray release];
+        docIDArray = nil;
+    }
+    docIDArray = [[NSMutableArray alloc] initWithCapacity:0];
+    indicator.hidden = NO;
+    [indicator startAnimating];
+    if (valueView.isFirstResponder)
+    {
+        [valueView resignFirstResponder];
+    }
+    StorageService *storageService = [App42API buildStorageService];
+    Storage *storage=[storageService findAllDocuments:DOC_NAME collectionName:COLLECTION_NAME];
+    responseView.text = storage.strResponse;
+    int count = [[storage jsonDocArray] count];
+    for (int i=0; i<count; i++)
+    {
+        [docIDArray addObject:[[[storage jsonDocArray] objectAtIndex:i] docId]];
+    }
+    [indicator stopAnimating];
+    indicator.hidden = YES;
+}
+
+-(IBAction)deleteData:(id)sender
+{
+    indicator.hidden = NO;
+    [indicator startAnimating];
+    StorageService *storageService = [App42API buildStorageService];
+    
+    for (int i=0; i<[docIDArray count]-2; i++)
+    {
+        App42Response *response = [storageService deleteDocumentById:DOC_NAME collectionName:COLLECTION_NAME docId:[docIDArray objectAtIndex:i]];
+        responseView.text = response.strResponse;
+    }
+    [indicator stopAnimating];
+    indicator.hidden = YES;
 }
 
 @end

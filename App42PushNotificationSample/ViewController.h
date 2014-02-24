@@ -22,7 +22,7 @@
 -(IBAction)sendPushButtonAction:(id)sender;
 -(void)updatePushMessageLabel:(NSString*)message;
 -(void)setEvent:(NSString*)eventName forModule:(NSString*)module;
--(IBAction)addItem:(id)sender;
+-(IBAction)registerDeviceToken:(id)sender;
 -(IBAction)getItems:(id)sender;
 -(IBAction)deleteData:(id)sender;
 @end

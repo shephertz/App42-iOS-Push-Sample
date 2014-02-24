@@ -48,26 +48,26 @@
 }
 
 
-/**
- * You have to register your device token to App42 server to receive push notification
- */
--(void)registerDeviceTokenToApp42Server:(NSString*)deviceToken
-{
-    @try
-    {
-        PushNotificationService *pushObj=[App42API buildPushService];
-        [pushObj registerDeviceToken:deviceToken withUser:@"IPhoneTesting"];
-        [pushObj release];
-    }
-    @catch (App42Exception *exception)
-    {
-        NSLog(@"Reason = %@",exception.reason);
-    }
-    @finally
-    {
-        
-    }
-}
+///**
+// * You have to register your device token to App42 server to receive push notification
+// */
+//-(void)registerDeviceTokenToApp42Server:(NSString*)deviceToken
+//{
+//    @try
+//    {
+//        PushNotificationService *pushObj=[App42API buildPushService];
+//        [pushObj registerDeviceToken:deviceToken withUser:@"IPhoneTesting"];
+//        [pushObj release];
+//    }
+//    @catch (App42Exception *exception)
+//    {
+//        NSLog(@"Reason = %@",exception.reason);
+//    }
+//    @finally
+//    {
+//        
+//    }
+//}
 
 
 -(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
@@ -80,14 +80,13 @@
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
     
     NSLog(@"My token is: %@", devToken);
-    [self registerDeviceTokenToApp42Server:devToken];
+   
     [_viewController setDeviceToken:devToken];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
         NSLog(@"%s ..error=%@",__FUNCTION__,error);
-    [self registerDeviceTokenToApp42Server:@"b1d6b70a7fe5a29be43b823f7bd3aa072f60d849c931b3465915773b835f00f3"];
     [_viewController setDeviceToken:@"b1d6b70a7fe5a29be43b823f7bd3aa072f60d849c931b3465915773b835f00f3"];
 }
 
