@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
 @interface ViewController : UIViewController
 {
@@ -15,14 +16,14 @@
     IBOutlet UITextField *valueView;
     IBOutlet UIActivityIndicatorView *indicator;
     NSMutableArray *docIDArray;
+    StorageService *storageService;
 }
 
 @property(nonatomic,retain) NSString *deviceToken;
 
 -(IBAction)sendPushButtonAction:(id)sender;
 -(void)updatePushMessageLabel:(NSString*)message;
--(void)setEvent:(NSString*)eventName forModule:(NSString*)module;
 -(IBAction)registerDeviceToken:(id)sender;
--(IBAction)getItems:(id)sender;
--(IBAction)deleteData:(id)sender;
+
+
 @end

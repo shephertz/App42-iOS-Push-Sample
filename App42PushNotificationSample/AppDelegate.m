@@ -10,8 +10,8 @@
 #import "ViewController.h"
 #import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
-#define APP42_APP_KEY       @"3c1d8c1d23e1dde0d820b06e33e6260e3b9ac0438d522a4ac9d524fc12cb8559"
-#define APP42_SECRET_KEY    @"254964c8a7fcc95cee0362adc2e0e06e0a64ec53c7a9e5279c11b3c4303edf73"
+#define APP42_APP_KEY       @"Application_Key"
+#define APP42_SECRET_KEY    @"Secret_Key"
 
 
 @implementation AppDelegate
@@ -25,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
@@ -43,31 +44,11 @@
     [App42API enableApp42Trace:YES];
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     return YES;
 }
 
 
-///**
-// * You have to register your device token to App42 server to receive push notification
-// */
-//-(void)registerDeviceTokenToApp42Server:(NSString*)deviceToken
-//{
-//    @try
-//    {
-//        PushNotificationService *pushObj=[App42API buildPushService];
-//        [pushObj registerDeviceToken:deviceToken withUser:@"IPhoneTesting"];
-//        [pushObj release];
-//    }
-//    @catch (App42Exception *exception)
-//    {
-//        NSLog(@"Reason = %@",exception.reason);
-//    }
-//    @finally
-//    {
-//        
-//    }
-//}
 
 
 -(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
@@ -87,12 +68,13 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
         NSLog(@"%s ..error=%@",__FUNCTION__,error);
-    [_viewController setDeviceToken:@"b1d6b70a7fe5a29be43b823f7bd3aa072f60d849c931b3465915773b835f00f3"];
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"%s ..userInfo=%@",__FUNCTION__,userInfo);
+   
     [_viewController setEvent:@"Push Delivered" forModule:@"Push"];
     [_viewController updatePushMessageLabel:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
 }
