@@ -13,7 +13,7 @@
 {
     IBOutlet UILabel *pushNotification;
     IBOutlet UITextView *responseView;
-    IBOutlet UITextField *valueView;
+    IBOutlet UITextField *userNameTextField;
     IBOutlet UIActivityIndicatorView *indicator;
     NSMutableArray *docIDArray;
     StorageService *storageService;

@@ -10,8 +10,8 @@
 #import "ViewController.h"
 #import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
-#define APP42_APP_KEY       @"Application_Key"
-#define APP42_SECRET_KEY    @"Secret_Key"
+#define APP42_APP_KEY       @"00997a26e28f8e9e3ee0aebc9dbcda1b6c36537bb2f21989a8923f406daf97ae"//@"APP_Key"
+#define APP42_SECRET_KEY    @"706d9f53f67a18fcb427266231d998c43abe453cffa4a70091038bb861587639"//@"Secret_Key"
 
 
 @implementation AppDelegate
@@ -75,7 +75,6 @@
 {
     NSLog(@"%s ..userInfo=%@",__FUNCTION__,userInfo);
    
-    [_viewController setEvent:@"Push Delivered" forModule:@"Push"];
     [_viewController updatePushMessageLabel:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
 }
 
