@@ -287,8 +287,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/shephertztechnologies/Desktop/Rajeev/APP42_SDK/App42_iOS_API/Products,
-					"/Users/shephertztechnologies/Desktop/Rajeev/App42Samples/App42-iOS-Push-Sample",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App42PushNotificationSample/App42PushNotificationSample-Prefix.pch";
@@ -308,8 +306,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/shephertztechnologies/Desktop/Rajeev/APP42_SDK/App42_iOS_API/Products,
-					"/Users/shephertztechnologies/Desktop/Rajeev/App42Samples/App42-iOS-Push-Sample",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App42PushNotificationSample/App42PushNotificationSample-Prefix.pch";
