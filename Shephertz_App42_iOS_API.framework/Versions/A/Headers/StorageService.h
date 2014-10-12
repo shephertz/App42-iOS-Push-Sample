@@ -14,6 +14,7 @@
 @class Storage;
 @class Query;
 @class GeoQuery;
+@class App42File;
 /**
  * Storage service on cloud provides the way to store the JSON document in NoSQL
  * database running on cloud. One can store the JSON document, update it ,
@@ -30,15 +31,13 @@
 @interface StorageService : App42Service
 {
     
-    
-    
 }
 
 -(id)init __attribute__((unavailable));
 -(id)initWithAPIKey:(NSString *)apiKey  secretKey:(NSString *)secretKey;
 
 /**
- * Save the JSON document in given database name and collection name.
+ * Save the JSON String in given database name and collection name.
  *
  * @param dbName
  *            - Unique handler for storage name
@@ -52,6 +51,55 @@
  *
  */
 -(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName json:(NSString*)json;
+
+/**
+ * Save the data supplied as Dictionary in the given database name and collection name.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc has to be saved
+ * @param dataDict
+ *            - Target data as Dictionary to be saved
+ *
+ * @return Storage object
+ *
+ *
+ */
+
+-(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName dataDict:(NSDictionary*)dataDict;
+
+/**
+ * Save the data supplied as JSON String with an attachment file in the given database name and collection name.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc has to be saved
+ * @param json
+ *            - Target JSON document to be saved
+ *
+ * @return Storage object
+ *
+ *
+ */
+-(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName json:(NSString*)json attachment:(App42File*)file;
+
+/**
+ * Save the data supplied as Dictionary with an attachment file in the given database name and collection name.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc has to be saved
+ * @param json
+ *            - Target JSON document to be saved
+ *
+ * @return Storage object
+ *
+ */
+-(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName dataDict:(NSDictionary*)dataDict attachment:(App42File*)file;
+
 /**
  * Find all documents stored in given database and collection.
  *
@@ -61,7 +109,6 @@
  *            - Name of collection under which JSON doc needs to be searched
  *
  * @return Storage object
- *
  *
  */
 -(Storage*)findAllDocuments:(NSString*)dbName collectionName:(NSString*)collectionName;
@@ -168,6 +215,28 @@
  *
  */
 -(Storage*)updateDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value newJsonDoc:(NSString*)newJsonDoc;
+
+/**
+ * Update target document using key value search parameter. This key value
+ * pair will be searched in the JSON doc stored in the cloud and matching
+ * Doc will be updated with new JsonObject value.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc needs to be searched
+ * @param key
+ *            - Key to be searched for target JSON doc
+ * @param value
+ *            - Value to be searched for target JSON doc
+ * @param newDataDict
+ *            - New newDataDict to be added
+ *
+ * @return Storage object
+ * @throws App42Exception
+ */
+
+-(Storage*)updateDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value newDataDict:(NSDictionary*)newDataDict;
 /**
  * Update target document using the document id.
  *
@@ -185,6 +254,23 @@
  *
  */
 -(Storage*)updateDocumentByDocId:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId newJsonDoc:(NSString*)newJsonDoc;
+
+/**
+ * Update target document with NSDictionary doc using the document id.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc needs to be searched
+ * @param docId
+ *            - Id of the document to be searched for target JSON doc
+ * @param newDataDict
+ *            - New NSDictionary document to be added.
+ * @return Storage Object
+ * @throws App42Exception
+ */
+
+-(Storage*)updateDocumentByDocId:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId newDataDict:(NSDictionary*)newDataDict;
 
 /**
  * Delete target document using Object Id from given db and collection. The
@@ -320,6 +406,8 @@
                   andAclList:(NSArray*) aclList;
 
 -(App42Response*) deleteAllDocuments:(NSString*)dbName collectionName:(NSString*) collectionName;
+
+
 -(Storage*)findDocumentsByLocation:(NSString*)dbName collectionName:(NSString*)collectionName geoQuery:(GeoQuery*)query;
 /**
  * Delete target document using key and value from given db and collection.
@@ -400,6 +488,64 @@
                                      value:(NSString*)value
                                   dataDict:(NSDictionary*)dataDict;
 
+/**
+ * Add or Update keys of target document using doc id search parameter. This docId
+ * will be searched in the JSON doc stored in the cloud and matching
+ * Doc will be updated with new value passed. If matching key is not found it will insert a key
+ * in that doc with that key and value passed.
+ *
+ * @param dbName
+ *            - Unique handler for storage name
+ * @param collectionName
+ *            - Name of collection under which JSON doc needs to be searched
+ * @param docId
+ *            - DocId to be searched for target JSON doc
+ * @param dataDict
+ *            - New JsonObject document to be added
+ *
+ * @return Storage object
+ *
+ * @throws App42Exception
+ *
+ */
 
+-(Storage*) addOrUpdateKeys:(NSString*)dbName
+             collectionName:(NSString*)collectionName
+                      docId:(NSString*)docId
+                   dataDict:(NSDictionary*)dataDict;
+/**
+ *
+ * @param dbName
+ * @param collectionName
+ * @param docId
+ * @param file
+ * @return
+ * @throws App42Exception
+ */
 
+-(Storage*)addAttachmentToDocs:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId attachment:(App42File*)file;
+
+/**
+ *
+ * @param dbName
+ * @param collectionName
+ * @param query
+ * @param newJsonDoc
+ * @return
+ * @throws App42Exception
+ */
+-(Storage*)updateDocumentByQuery:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query newJsonDoc:(NSString*)newJsonDoc;
+
+/**
+ *
+ * @param dbName
+ * @param collectionName
+ * @param query
+ * @param newDataDict
+ * @return
+ * @throws App42Exception
+ */
+-(Storage*)updateDocumentByQuery:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query newDataDict:(NSDictionary*)newDataDict;
+
+-(App42Response*)findDocumentsByQueryCount:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query;
 @end

@@ -24,6 +24,7 @@
     NSString *status;
     NSString *reviewId;
     NSString *comment;
+    NSString *commentId;
     double rating;
     NSDate *createdOn;
     
@@ -48,6 +49,10 @@
  *set and get the comment of the User.
  */
 @property(nonatomic,retain)NSString *comment;
+/*!
+ *set and get the commentId For a comment.
+ */
+@property(nonatomic,retain)NSString *commentId;
 /*!
  *set and get the rating given by the User.
  */

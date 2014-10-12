@@ -22,6 +22,7 @@
 #define APP42_OP_LIKE                    @"$lk"
 #define APP42_OP_AND                     @"$and"
 #define APP42_OP_OR                      @"$or"
+#define APP42_OP_INLIST                  @"$in"
 
 #define APP42_ORDER_ASCENDING            @"ASCENDING"
 #define APP42_ORDER_DESCENDING           @"DESCENDING"

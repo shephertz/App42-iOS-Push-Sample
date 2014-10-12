@@ -289,5 +289,31 @@
  * @throws App42Exception
  */
 -(NSArray*)getAllMessagesFromGroup:(NSString*)groupName ofGroupOwner:(NSString*)groupOwner toUser:(NSString*)userName;
+/**
+ *
+ * @param userName
+ * @param buddyName
+ * @return
+ * @throws App42Exception
+ */
 
+-(App42Response*)unFriend:(NSString*)userName buddyName:(NSString*)buddyName;
+
+/**
+ *
+ * @param userName
+ * @param messageId
+ * @return
+ * @throws App42Exception
+ */
+-(App42Response*)deleteMessageById:(NSString*)messageId userName:(NSString*)userName;
+
+/**
+ *
+ * @param userName
+ * @param messageIds
+ * @return
+ * @throws App42Exception
+ */
+-(App42Response*)deleteMessageByIds:(NSArray*)messageIds userName:(NSString*)userName;
 @end

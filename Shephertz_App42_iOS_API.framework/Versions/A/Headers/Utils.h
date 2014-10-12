@@ -37,6 +37,7 @@ extern void APP42Log(NSString * format, ... ) NS_FORMAT_FUNCTION(1,2);
 +(NSString*)multipartRequestWithRequestName:(NSString*)name forFileData:(NSData*)fileData fileName:(NSString*)fileName queryParams:(NSMutableDictionary*)queryParams postParams:(NSMutableDictionary*)postParams postUrl:(NSString*)postUrl;
 +(void)throwExceptionIfNullOrBlank:(id)Obj :(NSString*)name;
 +(void)validateMax:(int)max;
++(void)validateBadges:(int)badges;
 +(void)throwExceptionIfEmailNotValid:(id)obj :(NSString*)name;
 +(void)throwExceptionIfNotValidExtension:(NSString*)fileName name:(NSString*)name;
 +(void)throwExceptionIfNotValidImageExtension:(NSString*)fileName name:(NSString*)name;

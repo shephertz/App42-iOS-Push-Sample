@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 @class GeoTag;
+@class Query;
+
 @interface App42Service : NSObject
 {
     
@@ -90,7 +92,18 @@
  */
 @property(nonatomic,retain) NSString *event;
 
+@property(nonatomic,assign) BOOL metaInfo;
+
+@property(nonatomic,retain) NSString *metaInfoQuery;
+
+@property(nonatomic,retain) NSString *dbName;
+
+@property(nonatomic,retain) NSString *collectionName;
+@property(nonatomic,retain) NSString *query;
+@property(nonatomic,retain) NSString *jsonObject;
+
 
 -(NSMutableDictionary*) populateSignParams;
 -(NSMutableDictionary*) populateMetaHeaderParams;
+-(void) setQuery:(NSString*)_collectionName metaInfoQuery:(Query*) _metaInfoQuery;
 @end

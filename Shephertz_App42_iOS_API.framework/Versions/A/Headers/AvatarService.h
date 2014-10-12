@@ -8,6 +8,11 @@
 
 #import <Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h>
 
+
+extern NSString *const PNG;
+extern NSString *const JPG;
+extern NSString *const GIF;
+
 @class Avatar;
 @interface AvatarService : App42Service
 
@@ -117,5 +122,15 @@
  */
 -(Avatar*)changeCurrentAvatarWithName:(NSString*)avatarName forUser:(NSString*)userName;
 
-
+/**
+ *
+ * @param avatarName
+ * @param userName
+ * @param fileData
+ * @param description
+ * @param extension
+ * @return
+ * @throws App42Exception
+ */
+-(Avatar*)createAvatarFromFileDataWithName:(NSString*)avatarName userName:(NSString*)userName fileData:(NSData*)fileData description:(NSString*)description extension:(NSString*)extension;
 @end

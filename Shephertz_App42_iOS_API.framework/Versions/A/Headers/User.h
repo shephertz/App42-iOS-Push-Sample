@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "App42Response.h"
 @class Profile;
-
+@class JSONDocument;
 /**
  *User class contain the member variables and allowed to be set and get.
- * 
  */
 
 
@@ -26,6 +25,7 @@
     Profile  *profile;
     BOOL isAccountLocked;
 }
+
 /*!
  *set and get the name of the User.
  */
@@ -51,9 +51,19 @@
  */
 @property(nonatomic,assign)BOOL isAccountLocked;
 /*!
- *set and get the the roles assigned to the User
+ *set and get the roles assigned to the User
  */
 @property(nonatomic,retain)NSArray *roleList;
+
+/*!
+ *set and get the createdOn
+ */
+@property(nonatomic,retain)NSDate *createdOn;
+
+/*!
+ *set and get the jsonDocList
+ */
+@property(nonatomic,retain)NSArray *jsonDocArray;
 
 -(NSString*)toString;
 @end

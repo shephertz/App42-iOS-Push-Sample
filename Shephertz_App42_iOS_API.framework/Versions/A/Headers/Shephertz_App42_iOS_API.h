@@ -10,11 +10,15 @@
 #import <Shephertz_App42_iOS_API/User.h>
 #import <Shephertz_App42_iOS_API/Profile.h>
 #import <Shephertz_App42_iOS_API/SocialService.h>
+#import <Shephertz_App42_iOS_API/PublicProfile.h>
+#import <Shephertz_App42_iOS_API/Friends.h>
 
 #import <Shephertz_App42_iOS_API/ServiceAPI.h>
 #import <Shephertz_App42_iOS_API/App42API.h>
 #import <Shephertz_App42_iOS_API/Utils.h>
 #import <Shephertz_App42_iOS_API/CustomCodeService.h>
+#import <Shephertz_App42_iOS_API/App42File.h>
+#import <Shephertz_App42_iOS_API/MetaResponse.h>
 
 
 #import <Shephertz_App42_iOS_API/PushNotificationService.h>
@@ -48,6 +52,7 @@
 #import <Shephertz_App42_iOS_API/RecommendedItem.h>
 #import <Shephertz_App42_iOS_API/PreferenceData.h>
 
+#import <Shephertz_App42_iOS_API/ACL.h>
 
 #import <Shephertz_App42_iOS_API/Bill.h>
 #import <Shephertz_App42_iOS_API/BillService.h>
@@ -153,3 +158,12 @@
 #import <Shephertz_App42_iOS_API/NSObject+SBJSON.h>
 #import <Shephertz_App42_iOS_API/SBJSON.h>
 #import <Shephertz_App42_iOS_API/SBJSONParser.h>
+
+#import <Shephertz_App42_iOS_API/Gift.h>
+#import <Shephertz_App42_iOS_API/Request.h>
+#import <Shephertz_App42_iOS_API/GiftService.h>
+
+#import <Shephertz_App42_iOS_API/Timer.h>
+#import <Shephertz_App42_iOS_API/TimerService.h>
+#import <Shephertz_App42_iOS_API/TimerResponseBuilder.h>
+

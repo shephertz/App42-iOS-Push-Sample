@@ -161,4 +161,30 @@
 
 -(Review*)addComment:(NSString*)comment byUser:(NSString*)userID forItem:(NSString*)itemID;
 -(NSArray*)getCommentsByItem:(NSString*)itemID;
+
+/**
+ *
+ * @param reviewId
+ * @return
+ * @throws App42Exception
+ */
+
+-(App42Response*)deleteReviewByReviewId:(NSString*) reviewId;
+
+/**
+ *
+ * @param commentId
+ * @return
+ * @throws App42Exception
+ */
+-(App42Response*)deleteCommentByCommentId:(NSString*)commentId;
+
+/**
+ *
+ * @param userId
+ * @return
+ * @throws App42Exception
+ */
+-(NSArray*)getAllReviewsByUser:(NSString*)userId;
+
 @end

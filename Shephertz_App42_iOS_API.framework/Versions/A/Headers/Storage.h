@@ -28,6 +28,13 @@
  *set and get the name of the database.
  */
 @property(nonatomic,retain) NSString *dbName;
+
+/*!
+ *set and get the name of the database.
+ */
+@property(nonatomic,assign) int recordCount;
+
+
 /*!
  *set and get the collection name of storage.
  */

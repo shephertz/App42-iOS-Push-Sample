@@ -89,7 +89,6 @@
 
 @property(nonatomic,retain) User *userObj;
 
-- (id) init __attribute__((unavailable));
 
 -(id)initWithUser:(User*)userObj;
 

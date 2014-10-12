@@ -52,4 +52,12 @@
  */
 +(GeoQuery*)buildGeoQueryWithTag:(GeoTag*)geoTag andOperator:(NSString*)op maxDistance:(double) maxDistance;
 
+/**
+ * @param logged
+ * @return
+ * @throws App42Exception
+ */
+
+-(Query*)setLoggedInUser:(NSString*)logged;
+
 @end

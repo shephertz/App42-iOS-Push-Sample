@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "App42Response.h"
+#import "MetaResponse.h"
+
+
 @class Game;
 @class FacebookProfile;
+
 /**
  * An inner class that contains the remaining properties of the Game.
- *
  */
-
-@interface Score : App42Response{
-    
+@interface Score : MetaResponse
+{
     NSString *userName;
     NSString *rank;
     NSDate *createdOn;

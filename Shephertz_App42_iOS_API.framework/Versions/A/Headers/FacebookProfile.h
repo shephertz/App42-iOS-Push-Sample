@@ -32,7 +32,7 @@
 @property(nonatomic,retain) Score *scoreObj;
 
 
--(id)init __attribute__((unavailable));
+//-(id)init __attribute__((unavailable));
 
 -(id)initWithScore:(Score*)score;
 

@@ -108,6 +108,19 @@
  *
  */
 -(NSArray*)getAllStorage;
+
+/**
+ * Fetch the name of storage page-wise stored on the cloud.
+ * @param max
+ *            - max result parameter
+ * @param offset
+ *            - offset result parameter
+ *
+ * @return Geo object containing List of all the storage created
+ *
+ */
+-(NSArray*)getAllStorageByPaging:(int)max offset:(int)offset;
+
 /**
  * Delete the specified Geo Storage from Cloud.
  *
@@ -119,6 +132,7 @@
  *
  */
 -(App42Response*)deleteStorage:(NSString*)storageName;
+
 /**
  * Get All Point from storage.
  *
@@ -130,5 +144,37 @@
  *
  */
 -(Geo*)getAllPoints:(NSString*)storageName;
+
+
+/**
+ * Get Points page-wise from storage.
+ *
+ * @param storageName
+ *            - Unique handler for storage name
+ * @param max
+ *            - max result parameter
+ * @param offset
+ *            - offset result parameter
+ *
+ * @return Geo object containing all the stored Geo Points for the specified
+ *         storage
+ *
+ */
+-(Geo*)getAllPointsByPaging:(NSString*)storageName max:(int)max offset:(int)offset;
+
+
+/**
+ * Delete Geo points.
+ *
+ * @param geoPointsArray
+ *            - Array of geo points need to be deleted
+ * @param geoStorageName
+ *            - Unique handler for storage name
+ *
+ * @return App42Response object containing the name of the storage that has
+ *         been deleted.
+ *
+ */
+-(App42Response*)deleteGeoPoints:(NSArray*)geoPointsArray geoStorageName:(NSString*)geoStorageName;
 
 @end

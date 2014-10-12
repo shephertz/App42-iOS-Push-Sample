@@ -33,7 +33,8 @@
 
 +(void)enableApp42Trace:(BOOL)isEnable;
 +(void)enableCrashEventHandler:(BOOL)isEnable;
-
++(NSString*) getDbName;
++(void) setDbName:(NSString*) l_dbName;
 
 /*!
  *@return Returns the instance of User API
@@ -155,5 +156,15 @@
  *@return Returns the instance of AchievementService API
  */
 +(id)buildAchievementService;
+
+/*!
+ *@return Returns the instance of GiftService API
+ */
++(id)buildGiftService;
+
+/*!
+ *@return Returns the instance of GiftService API
+ */
++(id)buildTimerService;
 
 @end

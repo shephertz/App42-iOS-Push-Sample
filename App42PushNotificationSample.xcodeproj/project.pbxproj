@@ -228,7 +228,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -244,7 +244,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "0C346245-23FE-48D6-89EC-AD451971BD82";
+				PROVISIONING_PROFILE = "1832805D-E23D-4C81-ABF4-0A48E3972DFF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C346245-23FE-48D6-89EC-AD451971BD82";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -262,7 +262,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -271,7 +271,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "0C346245-23FE-48D6-89EC-AD451971BD82";
+				PROVISIONING_PROFILE = "1832805D-E23D-4C81-ABF4-0A48E3972DFF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C346245-23FE-48D6-89EC-AD451971BD82";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -282,8 +282,8 @@
 		D77EC8A617A671410090378E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -294,8 +294,8 @@
 				GCC_PREFIX_HEADER = "App42PushNotificationSample/App42PushNotificationSample-Prefix.pch";
 				INFOPLIST_FILE = "App42PushNotificationSample/App42PushNotificationSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0C346245-23FE-48D6-89EC-AD451971BD82";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C346245-23FE-48D6-89EC-AD451971BD82";
+				PROVISIONING_PROFILE = "1832805D-E23D-4C81-ABF4-0A48E3972DFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1832805D-E23D-4C81-ABF4-0A48E3972DFF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -303,8 +303,8 @@
 		D77EC8A717A671410090378E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Siddhartha Chandurkar (W83S5TWNR8)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -315,8 +315,8 @@
 				GCC_PREFIX_HEADER = "App42PushNotificationSample/App42PushNotificationSample-Prefix.pch";
 				INFOPLIST_FILE = "App42PushNotificationSample/App42PushNotificationSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0C346245-23FE-48D6-89EC-AD451971BD82";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C346245-23FE-48D6-89EC-AD451971BD82";
+				PROVISIONING_PROFILE = "1832805D-E23D-4C81-ABF4-0A48E3972DFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1832805D-E23D-4C81-ABF4-0A48E3972DFF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

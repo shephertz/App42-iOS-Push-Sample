@@ -163,7 +163,8 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getFileByUser:(NSString*)name userName:(NSString*)userName;
+-(Upload*)getFileByUser:(NSString*)fileName userName:(NSString*)userName;
+
 /**
  * Gets the count of file based on user name.
  *
@@ -349,6 +350,36 @@ extern NSString *const OTHER;
  *            retrieve the file.
  * @param userName
  *            - Name of the user who is uploading the file
+ * @param ownerName
+ *            - Name of owner of the group
+ * @param groupName
+ *            - Name of the group in which file has to upload
+ * @param fileData
+ *            - The File data to be uploaded
+ * @param fileType
+ *            - Type of the file e.g. Upload.AUDIO, Upload.XML etc.
+ * @param description
+ *            - Description of the file to be uploaded.
+ * @return Upload object
+ * @throws App42Exception
+ */
+
+-(Upload*)uploadFileForGroup:(NSString*) fileName
+                    userName:(NSString*) userName
+                   ownerName:(NSString*) ownerName
+                   groupName:(NSString*) groupName
+                    fileData:(NSData  *) fileData
+                    fileType:(NSString*) fileType
+                 description:(NSString*) description;
+
+
+/**
+ *
+ * @param name
+ *            - The name of the file which has to be saved. It is used to
+ *            retrieve the file.
+ * @param userName
+ *            - Name of the user who is uploading the file
  * @param buddyName
  *            - Name of the buddy for which file has to upload
  * @param filePath
@@ -369,6 +400,33 @@ extern NSString *const OTHER;
                      filePath:(NSString*) filePath
                      fileType:(NSString*) fileType
                   description:(NSString*) description;
+
+/**
+ *
+ * @param name
+ *            - The name of the file which has to be saved. It is used to
+ *            retrieve the file.
+ * @param userName
+ *            - Name of the user who is uploading the file
+ * @param buddyName
+ *            - Name of the buddy for which file has to upload
+ * @param fileData
+ *            - The data of a file to be uploaded.
+ * @param fileType
+ *            - Type of the file e.g. Upload.AUDIO, Upload.XML etc.
+ * @param description
+ *            - Description of the file to be uploaded.
+ * @return Upload object
+ * @throws App42Exception
+ */
+
+-(Upload*)uploadFileForFriend:(NSString*) fileName
+                     userName:(NSString*) userName
+                    buddyName:(NSString*) buddyName
+                     fileData:(NSData  *) fileData
+                     fileType:(NSString*) fileType
+                  description:(NSString*) description;
+
 
 /**
  *

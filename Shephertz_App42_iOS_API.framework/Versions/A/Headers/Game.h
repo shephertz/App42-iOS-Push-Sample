@@ -18,11 +18,9 @@
 
 @interface Game : App42Response
 {
-    
     NSString *name;
     NSString *description;
     NSMutableArray *scoreList;
-    
 }
 /*!
  *set and get the name of the Game which has to be created.

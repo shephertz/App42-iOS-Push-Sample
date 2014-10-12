@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "App42File.h"
 
 @class Storage;
 @class GeoTag;
@@ -16,7 +17,7 @@
  */
 
 
-@interface JSONDocument : NSObject
+@interface JSONDocument : App42File
 {
     NSString *jsonDoc;
     NSString *docId;
@@ -38,6 +39,21 @@
 @property(nonatomic,retain)NSString *docId;
 
 /*!
+ *set and get createdAt for the Storage.
+ */
+@property(nonatomic,retain)NSString *createdAt;
+
+/*!
+ *set and get updatedAt for the Storage.
+ */
+@property(nonatomic,retain)NSString *updatedAt;
+
+/*!
+ *set and get updatedAt for the Storage.
+ */
+@property(nonatomic,retain)NSString *event;
+
+/*!
  * Sets the ACL list on document object
  */
 @property(nonatomic,retain)NSMutableArray *aclList;
@@ -52,7 +68,13 @@
  */
 @property(nonatomic,retain) GeoTag *loc;
 
-- (id) init __attribute__((unavailable));
+/*!
+ * Sets the ACL list on document object
+ */
+@property(nonatomic,retain)NSMutableArray *fileList;
+
+
+//- (id) init __attribute__((unavailable));
 
 -(id)initWithStorage:(Storage*)storageObj;
 

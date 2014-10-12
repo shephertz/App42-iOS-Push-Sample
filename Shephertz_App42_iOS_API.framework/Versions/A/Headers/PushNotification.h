@@ -28,5 +28,8 @@
 @property(nonatomic,retain)NSString *message;
 
 @property(nonatomic,retain)NSString *userName;
+@property(nonatomic,retain)NSString *expiry;
+@property(nonatomic,retain)NSString *type;
+@property(nonatomic,retain)NSString *deviceToken;
 
 @end

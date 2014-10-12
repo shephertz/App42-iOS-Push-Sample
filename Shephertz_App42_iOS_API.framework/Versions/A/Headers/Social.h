@@ -13,6 +13,10 @@
  * values from the response.
  *
  */
+
+@class FacebookProfile;
+@class PublicProfile;
+
 @interface Social : App42Response{
     
     NSString *userName;
@@ -89,6 +93,15 @@
  */
 @property(nonatomic,retain) NSMutableArray *friendsList;
 
+/*!
+ *set and get facebookProfile.
+ */
+@property(nonatomic,retain) FacebookProfile *facebookProfile;
+
+/*!
+ *set and get publicProfile.
+ */
+@property(nonatomic,retain) NSMutableArray *publicProfile;
 @end
 
 

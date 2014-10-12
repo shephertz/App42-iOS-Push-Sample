@@ -24,6 +24,7 @@
     NSString *name;
     NSString *description;
     double points;
+    double rank;
     
 }
 /*!
@@ -46,5 +47,11 @@
  *set and get the points to the Reward.
  */
 @property(nonatomic,assign)double points;
+
+/*!
+ *set and get the rank of the user.
+ */
+@property(nonatomic,assign)double rank;
+
 
 @end

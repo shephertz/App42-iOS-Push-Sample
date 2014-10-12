@@ -96,8 +96,12 @@ extern NSString *const DEVELOPMENT;
  * @param channel the channel name which you want to subscribe
  * @param userName username which want to subscribe
  * @param deviceToken deviceToken for which you want to subscribe
- * @param deviceType deviceType for which you want to subscribe
  * @return PushNotification Object
+ */
+- (PushNotification*)subscribeToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken;
+
+/**
+ * This API is Deprecated from Version 2.2
  */
 - (PushNotification*)subscribeToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken deviceType:(NSString*)deviceType;
 
@@ -172,5 +176,113 @@ extern NSString *const DEVELOPMENT;
  * @throws App42Exception
  */
 -(PushNotification*)sendPushToTargetUsers:(NSString*)message dbName:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*) query;
+
+/**
+ * Send push message to list of specific users.
+ *
+ * @param message
+ *            - Message which you have to send.
+ * @param userList
+ *            - List of the users for which message has to be send.
+ * @return PushNotification Object
+ * @throws App42Exception
+ */
+- (PushNotification *)sendPushMessageToGroup:(NSArray*)userList message:(NSString *)message;
+
+/**
+ *
+ * @param startDate
+ * @param endDate
+ * @param message
+ * @return
+ * @throws App42Exception
+ */
+
+- (PushNotification *)sendMessageToInActiveUsersFromDate:(NSDate*)startDate toDate:(NSDate*)endDate message:(NSString *)message;
+
+/**
+ * Send Push Message To user in async mode
+ *
+ * @param username
+ *            - Name of the user which you want to send the message
+ * @param message
+ *            - Message which you want to send.
+ * @param expiryDate
+ *            - date on which message is to schedule.
+ * @return
+ * @throws App42Exception
+ */
+
+- (PushNotification *)scheduleMessageToUser:(NSString*)userName expiryDate:(NSDate*)expiryDate message:(NSString *)message;
+
+/**
+ * Delete your device from push-notification service.
+ *
+ * @param userName
+ *            - Name of user whose device token has to delete.
+ * @param deviceToken
+ *            - device token which has to be deleted
+ * @return App42Response Object
+ * @throws App42Exception
+ */
+
+-(App42Response*)deleteDeviceToken:(NSString*)userName  deviceToken:(NSString*) deviceToken;
+
+/**
+ * Delete all devices registered for single user in push-notification service.
+ *
+ * @param userName
+ *            - Name of user whose devices has to delete.
+ * @return App42Response Object
+ * @throws App42Exception
+ */
+-(App42Response*)deleteAllDevices:(NSString*)userName;
+
+/**
+ * Unsubscribe your device from push-notification service.
+ * @param userName
+ * @param deviceToken
+ * @return
+ * @throws App42Exception
+ */
+-(PushNotification*)unsubscribeDeviceForUser:(NSString *)userName deviceToken:(NSString*)deviceToken;
+
+/**
+ * Resubscribe your device for push-notification service.
+ * @param userName
+ * @param deviceToken
+ * @return
+ * @throws App42Exception
+ */
+-(PushNotification*)resubscribeDeviceForUser:(NSString *)userName deviceToken:(NSString*)deviceToken;
+
+/**
+ * Send push to device with matching deviceToken and userName.
+ * @param userName
+ * @param deviceToken
+ * @return
+ * @throws App42Exception
+ */
+- (PushNotification *)sendPushMessageToDevice:(NSString *)deviceToken userName:(NSString*)userName message:(NSString *)message;
+
+/**
+ *
+ * @param userName
+ * @param deviceToken
+ * @param increment
+ * @return
+ * @throws App42Exception
+ */
+- (PushNotification *)updatePushBadgeforDevice:(NSString *)deviceToken userName:(NSString*)userName badges:(int)badges;
+
+/**
+ *
+ * @param userName
+ * @param increment
+ * @return
+ * @throws App42Exception
+ */
+- (PushNotification *)updatePushBadgeforUser:(NSString*)userName badges:(int)badges;
+
 
 @end

@@ -22,6 +22,7 @@
     NSString *url;
     NSString *tinyUrl;
     NSString *thumbnailUrl;
+    NSString *thumbNailTinyUrl;
     Album *albumObject;
     NSArray *tagList;
         
@@ -46,6 +47,10 @@
  *set and get the thumbnail url of the photo. 
  */
 @property(nonatomic,retain)NSString *thumbNailUrl;
+/*!
+ *set and get the thumbnail url of the photo.
+ */
+@property(nonatomic,retain)NSString *thumbNailTinyUrl;
 /*!
  *set and get the albumObject for Photo Object. 
  */

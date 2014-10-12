@@ -229,4 +229,21 @@
                        ofUser:(NSString*)userName
                   withAclList:(NSArray *)aclList;
 
+/**
+ * Update Photo to the specified Album of a particular user.
+ *
+ * @param userName
+ *            - Name of the User who is giving access permission
+ * @param albumName
+ *            - Name of the Album in which photo has to be accessed
+ * @param photoName
+ *            - Name of the Photo for which access is requested
+ * @param path
+ *            - Path from where the photo need to be updated to the album.
+ *
+ * @return Album object
+ *
+ */
+
+-(Album*)updatePhoto:(NSString*)userName albumName:(NSString*)albumNam photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription path:(NSString*)path;
 @end

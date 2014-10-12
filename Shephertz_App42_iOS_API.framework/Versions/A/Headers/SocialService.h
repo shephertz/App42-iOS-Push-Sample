@@ -206,4 +206,92 @@
  * @throws App42Exception
  */
 -(Social *)getFacebookFriendsFromAccessToken:(NSString *)accessToken;
+
+/**
+ *
+ * Share binary files on your facebook wall with custom message.
+ *
+ * @param accessToken
+ *            - Facebook Access Token that has been received after
+ *            authorization
+ * @param name
+ *            - name of the file which has to be share.
+ * @param filePath
+ *            - file path of your local machiene
+ * @param message
+ *            - Message which has to be post with Link.
+ * @return App42Response Object
+ * @throws App42Exception
+ */
+
+-(App42Response*)facebookPublishStream:(NSString *)accessToken fileName:(NSString*)fileName filePath:(NSString*)filePath message:(NSString*) message;
+
+/**
+ *
+ * Share your link on facebook based on access token.
+ *
+ * @param accessToken
+ *            - Facebook Access Token that has been received after
+ *            authorization.
+ * @param link
+ *            - Link which has to be post on facebook wall.
+ * @param message
+ *            - Message which has to be post with Link.
+ * @return App42Response Object
+ * @throws App42Exception
+ */
+
+-(App42Response*)facebookLinkPost:(NSString*)accessToken link:(NSString*)link message:(NSString*) message;
+
+/**
+ *
+ * Share your link on facebook based on custom image and message.
+ *
+ *
+ * @param accessToken
+ *            -Facebook Access Token that has been received after
+ *            authorization
+ * @param link
+ *            - Link which has to be share on facebook.
+ * @param message
+ *            - Message which has to be share with Link.
+ * @param pictureUrl
+ *            - Your Thumbnail image url which you want to share on
+ *            facebook.
+ * @param name
+ *            - Name of your File.
+ * @param description
+ *            - Description about your link.
+ * @return App42Response Object
+ * @throws App42Exception
+ */
+
+-(App42Response*)facebookLinkPostWithCustomThumbnail:(NSString*)accessToken link:(NSString*)link message:(NSString*)message
+                                          pictureUrl:(NSString*) pictureUrl fileName:(NSString*)fileName  description:(NSString*) description;
+
+/**
+ * Fetch the profile info like profile pic ,facebookID and user name based
+ * on facebook access token.
+ *
+ * @param accessToken
+ *            -Facebook Access Token for which Profile Info has to be
+ *            fetched.
+ * @return App42Response Object
+ * @throws App42Exception
+ */
+
+-(Social*)getFacebookProfile:(NSString*)accessToken;
+
+/**
+ * Get the facebook profile info for the gives IDs
+ *
+ * @param facebookIds
+ *            - facebook id(s) of the user(s) for which facebook profile
+ *            info is to fetch.
+ * @return Social object
+ * @throws App42Exception
+ */
+
+-(Social*)getFacebookProfilesFromIds:(NSArray*) facebookIds;
+
 @end

@@ -10,8 +10,8 @@
 #import "ViewController.h"
 #import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
-#define APP42_APP_KEY       @"APP_Key"
-#define APP42_SECRET_KEY    @"Secret_Key"
+#define APP42_APP_KEY       @"APP42_APP_KEY"
+#define APP42_SECRET_KEY    @"APP42_SECRET_KEY"
 
 
 @implementation AppDelegate
@@ -42,8 +42,27 @@
     [App42API initializeWithAPIKey:APP42_APP_KEY andSecretKey:APP42_SECRET_KEY];
     [App42API setCacheStoragePolicy:0];
     [App42API enableApp42Trace:YES];
+    
     // Let the device know we want to receive push notifications
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    // Register for Push Notitications, if running on iOS 8
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+    else
+    {
+        // Register for Push Notifications, if running iOS version < 8
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
+    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     return YES;
 }
@@ -63,6 +82,13 @@
     NSLog(@"My token is: %@", devToken);
    
     [_viewController setDeviceToken:devToken];
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    NSLog(@"%s....%@",__FUNCTION__,notificationSettings);
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
