@@ -87,7 +87,7 @@
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     NSLog(@"%s....%@",__FUNCTION__,notificationSettings);
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    //[[UIApplication sharedApplication] registerForRemoteNotifications];
 
 }
 
