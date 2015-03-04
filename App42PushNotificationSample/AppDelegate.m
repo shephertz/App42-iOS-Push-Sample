@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "Shephertz_App42_iOS_API/Shephertz_App42_iOS_API.h"
 
+#import "App42PushManager.h" //Import to support geo based push after adding the plugin folder
+
 #define APP42_APP_KEY       @"APP42_APP_KEY"
 #define APP42_SECRET_KEY    @"APP42_SECRET_KEY"
 
@@ -53,7 +55,7 @@
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
                                                                                  categories:nil];
         [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
+        
     }
     else
     {
@@ -63,7 +65,8 @@
                                                          UIRemoteNotificationTypeSound)];
     }
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
     return YES;
 }
 
@@ -84,10 +87,12 @@
     [_viewController setDeviceToken:devToken];
 }
 
+#pragma mark- Push related delagates
+
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     NSLog(@"%s....%@",__FUNCTION__,notificationSettings);
-    //[[UIApplication sharedApplication] registerForRemoteNotifications];
+    [application registerForRemoteNotifications];
 
 }
 
@@ -101,9 +106,25 @@
 {
     NSLog(@"%s ..userInfo=%@",__FUNCTION__,userInfo);
    
-    [_viewController updatePushMessageLabel:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
+    [_viewController updatePushMessageLabel:[userInfo JSONRepresentation]];
 }
 
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    NSLog(@"%s",__func__);
+    /**
+     * Handles the geo based push messages and decides the eligibility of the push that should be shown to user or not
+     */
+    [[App42PushManager sharedManager] handleGeoBasedPush:userInfo fetchCompletionHandler:completionHandler];
+}
+
+
+#pragma mark- Local notification related delagates
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSLog(@"%s",__func__);
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

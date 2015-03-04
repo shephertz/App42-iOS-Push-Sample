@@ -25,11 +25,13 @@
     indicator.hidden = YES;
     storageService = [App42API buildStorageService];
     userName = @"";
+    userNameTextField.text = @"";
 }
 
 
 -(IBAction)registerDeviceToken:(id)sender 
 {
+    
     if (userNameTextField.isFirstResponder)
     {
         [userNameTextField resignFirstResponder];
@@ -46,8 +48,18 @@
              * Registering Device Token to App42 Cloud API
              */
             PushNotificationService *pushObj=[App42API buildPushService];
-            PushNotification *push = [pushObj registerDeviceToken:deviceToken withUser:userName];
-            responseView.text = push.strResponse;
+            [pushObj registerDeviceToken:deviceToken withUser:userName completionBlock:^(BOOL success, id responseObj, App42Exception *exception) {
+                if (success) {
+                    PushNotification *push = (PushNotification*)responseObj;
+                    responseView.text = push.strResponse;
+                }
+                else
+                {
+                    NSLog(@"Reason = %@",exception.reason);
+                    responseView.text = exception.reason;
+                }
+            }];
+            
             [pushObj release];
         }
         @catch (App42Exception *exception)
@@ -103,14 +115,27 @@
         [dictionary setObject:message forKey:@"alert"];
         [dictionary setObject:@"default" forKey:@"sound"];
         [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"badge"];
+        [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"content-available"];
         
         PushNotificationService *pushObj=[App42API buildPushService];
-        PushNotification *push = [pushObj sendPushMessageToUser:_userName withMessageDictionary:dictionary];
-        responseView.text = push.strResponse;
-        [indicator stopAnimating];
-        indicator.hidden = YES;
-
-        [pushObj release];
+        [pushObj sendPushMessageToUser:_userName withMessageDictionary:dictionary completionBlock:^(BOOL success, id responseObj, App42Exception *exception) {
+            if (success) {
+                PushNotification *push = (PushNotification*)responseObj;
+                responseView.text = push.strResponse;
+            }
+            else
+            {
+                NSLog(@"Reason = %@",exception.reason);
+                responseView.text = exception.reason;
+            }
+            
+            [indicator stopAnimating];
+            indicator.hidden = YES;
+            
+            [pushObj release];
+        }];
+        
+        
     }
     @catch (App42Exception *exception)
     {
@@ -129,8 +154,18 @@
     @try
     {
         PushNotificationService *pushObj=[App42API buildPushService];
-        [pushObj subscribeToChannel:channelName userName:_userName deviceToken:deviceToken deviceType:@"iOS"];
-        [pushObj release];
+        [pushObj subscribeToChannel:channelName userName:userName deviceToken:deviceToken completionBlock:^(BOOL success, id responseObj, App42Exception *exception) {
+            if (success) {
+                PushNotification *push = (PushNotification*)responseObj;
+                responseView.text = push.strResponse;
+            }
+            else
+            {
+                NSLog(@"Reason = %@",exception.reason);
+                responseView.text = exception.reason;
+            }
+            [pushObj release];
+        }];
     }
     @catch (App42Exception *exception)
     {
@@ -153,8 +188,18 @@
         [dictionary setObject:@"2" forKey:@"badge"];
         
         PushNotificationService *pushObj=[App42API buildPushService];
-        [pushObj sendPushMessageToChannel:channelName withMessageDictionary:dictionary];
-        [pushObj release];
+        [pushObj sendPushMessageToChannel:channelName withMessageDictionary:dictionary completionBlock:^(BOOL success, id responseObj, App42Exception *exception) {
+            if (success) {
+                PushNotification *push = (PushNotification*)responseObj;
+                responseView.text = push.strResponse;
+            }
+            else
+            {
+                NSLog(@"Reason = %@",exception.reason);
+                responseView.text = exception.reason;
+            }
+            [pushObj release];
+        }];
     }
     @catch (App42Exception *exception)
     {
