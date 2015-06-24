@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 @class GeoTag;
 @class Query;
+@class App42Exception;
+
+
+typedef void (^App42ResponseBlock)(BOOL success, id responseObj, App42Exception *exception);
 
 @interface App42Service : NSObject
 {
-    
     int pageOffset;
     int pageMaxRecords;
-    
 }
 
 /*!
@@ -106,4 +108,5 @@
 -(NSMutableDictionary*) populateSignParams;
 -(NSMutableDictionary*) populateMetaHeaderParams;
 -(void) setQuery:(NSString*)_collectionName metaInfoQuery:(Query*) _metaInfoQuery;
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameResponseBuilder.h"
 #import "App42Service.h"
 
 @class Game;
@@ -51,7 +50,7 @@
  * @return Game object containing the scores that has been added
  *
  */
--(Game*)addScore:(NSString*)gameName gameUserName:(NSString*)gameUserName gScore:(double)gameScore;
+-(void)addScore:(NSString*)gameName gameUserName:(NSString*)gameUserName gScore:(double)gameScore completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Deducts the score from users account for a particular Game
  *
@@ -65,7 +64,7 @@
  * @return Game object containing the scores that has been deducted
  *
  */
--(Game*)deductScore:(NSString*)gameName gameUserName:(NSString*)gameUserName gameScore:(double)gameScore;
+-(void)deductScore:(NSString*)gameName gameUserName:(NSString*)gameUserName gameScore:(double)gameScore completionBlock:(App42ResponseBlock)completionBlock;
 
 
 @end

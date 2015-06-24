@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RecommenderResponseBuilder.h"
 #import "App42Service.h"
 
 
@@ -92,7 +91,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  */
 
--(App42Response*)loadPreferenceFile:(NSString*)preferenceFilePath;
+-(void)loadPreferenceFile:(NSString*)preferenceFilePath completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Uploads peference file on the cloud via Stream. The preference file should be in CSV
  * format. This prefernce file has to be uploaded once which can be a batch
@@ -119,7 +118,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(App42Response*)loadPreferenceFileWithData:(NSData*)preferenceData;
+-(void)loadPreferenceFileWithData:(NSData*)preferenceData completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Add or Update preference list on the cloud.
  *
@@ -131,7 +130,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(App42Response*)addOrUpdatePreference:(NSMutableArray*)preferenceDataList;
+-(void)addOrUpdatePreference:(NSMutableArray*)preferenceDataList completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based recommendations based on Neighborhood. Recommendations are
  * found based on similar users in the Neighborhood of the given user. The
@@ -148,7 +147,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedNeighborhood:(long)userId size:(int)size howMany:(int)howMany;
+-(void)userBasedNeighborhood:(long)userId size:(int)size howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based neighborhood recommendations based on Threshold.
  * Recommendations are found based on Threshold where thereshold represents
@@ -166,7 +165,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedThreshold:(long)userId threshold:(double)threshold howMany:(int)howMany;
+-(void)userBasedThreshold:(long)userId threshold:(double)threshold howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based recommendations based on Neighborhood and Similarity.
  * Recommendations and found based on the similar users in the Neighborhood
@@ -188,7 +187,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedNeighborhoodBySimilarity:(NSString*)recommenderSimilarity userId:(long)userId size:(int)size howMany:(int)howMany;
+-(void)userBasedNeighborhoodBySimilarity:(NSString*)recommenderSimilarity userId:(long)userId size:(int)size howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based neighbourhood recommendations based on Threshold.
  * Recommendations are found based on Threshold where threshold represents
@@ -209,7 +208,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedThresholdBySimilarity:(NSString*)recommenderSimilarity userId:(long)userId threshold:(double)threshold howMany:(int)howMany;
+-(void)userBasedThresholdBySimilarity:(NSString*)recommenderSimilarity userId:(long)userId threshold:(double)threshold howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Item based recommendations. Recommendations and found based item
  * similarity of the given user. The size of the neighborhood can be found.
@@ -223,7 +222,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)itemBased:(long)userId howMany:(int)howMany;
+-(void)itemBased:(long)userId howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Recommendations based on SlopeOne Algorithm
@@ -237,7 +236,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)slopeOne:(long)userId howMany:(int)howMany;
+-(void)slopeOne:(long)userId howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based neighbourhood recommendations based on Threshold for all
  * Users. Recommendations are found based on Threshold where threshold
@@ -253,7 +252,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedThresholdForAll:(double)threshold howMany:(int)howMany;
+-(void)userBasedThresholdForAll:(double)threshold howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based recommendations based on Neighborhood and Similarity for all
  * Users. Recommendations and found based similar users in the Neighborhood
@@ -273,7 +272,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedNeighborhoodBySimilarityForAll:(NSString*)recommenderSimilarity size:(int)size howMany:(int)howMany;
+-(void)userBasedNeighborhoodBySimilarityForAll:(NSString*)recommenderSimilarity size:(int)size howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based neighbourhood recommendations based on Threshold for All.
  * Recommendations are found based on Threshold where threshold represents
@@ -292,7 +291,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedThresholdBySimilarityForAll:(NSString*)recommenderSimilarity threshold:(double)threshold howMany:(int)howMany;
+-(void)userBasedThresholdBySimilarityForAll:(NSString*)recommenderSimilarity threshold:(double)threshold howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Item based recommendations for all Users. Recommendations and found based
  * item similarity of the given user. The size of the neighborhood can be
@@ -305,7 +304,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)itemBasedForAll:(int)howMany;
+-(void)itemBasedForAll:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Item based recommendations for all Users. Recommendations and found based
  * one item similarity. Similarity algorithm can be specified. of the given
@@ -321,7 +320,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)itemBasedBySimilarityForAll:(NSString*)recommenderSimilarity howMany:(int)howMany;
+-(void)itemBasedBySimilarityForAll:(NSString*)recommenderSimilarity howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Recommendations based on SlopeOne Algorithm for all Users
  *
@@ -332,7 +331,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)slopeOneForAll:(int)howMany;
+-(void)slopeOneForAll:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Item based recommendations. Recommendations and found based one item
  * similarity. Similarity algorithm can be specified. of the given user. The
@@ -350,7 +349,7 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)itemBasedBySimilarity:(NSString*)recommenderSimilarity userId:(long)userId howMany:(int)howMany;
+-(void)itemBasedBySimilarity:(NSString*)recommenderSimilarity userId:(long)userId howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * User based recommendations based on Neighborhood for All Users.
  * Recommendations and found based similar users in the Neighborhood of the
@@ -365,13 +364,13 @@ extern NSString *const PEARSON_CORRELATION;
  *
  *
  */
--(Recommender*)userBasedNeighborhoodForAll:(int)size howMany:(int)howMany;
+-(void)userBasedNeighborhoodForAll:(int)size howMany:(int)howMany completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Delete existing preference file.
  *
  * @returns App42Response Object.
  *
  */
--(App42Response*)deleteAllPreferences;
+-(void)deleteAllPreferences:(App42ResponseBlock)completionBlock;
 
 @end

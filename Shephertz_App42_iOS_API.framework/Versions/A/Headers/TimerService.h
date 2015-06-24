@@ -23,16 +23,16 @@
 -(id)initWithAPIKey:(NSString *)apiKey  secretKey:(NSString *)secretKey;
 
 
--(Timer*)createOrUpdateTimerWithName:(NSString*)timerName timeInSeconds:(long)timeInSeconds;
+-(void)createOrUpdateTimerWithName:(NSString*)timerName timeInSeconds:(long)timeInSeconds completionBlock:(App42ResponseBlock)completionBlock;
 
--(Timer*)startTimerWithName:(NSString*)timerName forUser:(NSString*)userName;
+-(void)startTimerWithName:(NSString*)timerName forUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
--(Timer*)isTimerActive:(NSString*)timerName forUser:(NSString*)userName;
+-(void)isTimerActive:(NSString*)timerName forUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
--(Timer*)cancelTimerWithName:(NSString*)timerName forUser:(NSString*)userName;
+-(void)cancelTimerWithName:(NSString*)timerName forUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
--(Timer*)deleteTimerWithName:(NSString*)timerName;
+-(void)deleteTimerWithName:(NSString*)timerName completionBlock:(App42ResponseBlock)completionBlock;
 
--(Timer*)getCurrentTime;
+-(void)getCurrentTime:(App42ResponseBlock)completionBlock;
 
 @end

@@ -26,7 +26,12 @@
 +(NSString*) getInstallId;
 +(void)removeSession;
 
++(void)enableAppStateEventTracking:(BOOL)isEnable;
++(void)enableEventService:(BOOL)isEnable;
++(void)enableAppAliveTracking:(BOOL)isEnable;
+
 +(void)setBaseUrl:(NSString*)baseUrl;
++(void)setEventBaseUrl:(NSString*)baseUrl;
 
 +(void)setCacheStoragePolicy:(NSURLRequestCachePolicy)cachePolicy;
 +(NSURLRequestCachePolicy)getCacheStoragePolicy;
@@ -36,6 +41,12 @@
 +(NSString*) getDbName;
 +(void) setDbName:(NSString*) l_dbName;
 
++(NSString*)getSecretKey;
++(void)setOfflineStorage:(BOOL)_offlineStorage;
++(void)setOfflineStorage:(BOOL)_offlineStorage withCacheSize:(long)cacheSize;
++(BOOL)getOfflineStorage;
+
+
 /*!
  *@return Returns the instance of User API
  */
@@ -44,14 +55,6 @@
  *@return Returns the instance of EmailSender API
  */
 +(id)buildEmailService;
-/*!
- *@return Returns the instance of License API
- */
-+(id)buildLicenseService;
-/*!
- *@return Returns the instance of Bill API
- */
-+(id)buildBillService;
 /*!
  *@return Returns the instance of Storage API
  */
@@ -68,10 +71,6 @@
  *@return Returns the instance of User API
  */
 +(id)buildQueueService;
-/*!
- *@return Returns the instance of Usage API
- */
-+(id)buildUsageService;
 /*!
  *@return Returns the instance of Recommender API
  */
@@ -163,8 +162,13 @@
 +(id)buildGiftService;
 
 /*!
- *@return Returns the instance of GiftService API
+ *@return Returns the instance of TimerService API
  */
 +(id)buildTimerService;
+
+/*!
+ *@return Returns the instance of EventService API
+ */
++(id)buildEventService;
 
 @end

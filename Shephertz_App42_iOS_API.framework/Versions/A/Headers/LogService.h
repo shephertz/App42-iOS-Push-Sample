@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LogResponseBuilder.h"
 #import "App42Service.h"
 /**
  * Centralize logging for your App. This service allows different levels e.g.
@@ -38,7 +37,7 @@
  *
  *
  */
--(Log*)info:(NSString *)msg module:(NSString*)module;
+-(void)info:(NSString *)msg module:(NSString*)module completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Logs the debug message
  *
@@ -50,7 +49,7 @@
  * @return Log object containing logged message.
  *
  */
--(Log*)debug:(NSString *)msg module:(NSString*)module;
+-(void)debug:(NSString *)msg module:(NSString*)module completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Logs the fatal message
  *
@@ -62,7 +61,7 @@
  * @return Log object containing logged message.
  *
  */
--(Log*)fatal:(NSString *)msg module:(NSString*)module;
+-(void)fatal:(NSString *)msg module:(NSString*)module completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Logs the error message
  *
@@ -74,7 +73,7 @@
  * @return Log object containing logged message
  *
  */
--(Log*)error:(NSString *)msg module:(NSString*)module;
+-(void)error:(NSString *)msg module:(NSString*)module completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch the count of log messages based on the Module
  *
@@ -85,7 +84,7 @@
  * @return App42Response object containing count of fetched messages.
  *
  */
--(App42Response*)fetchLogsCountByModule:(NSString*)moduleName;
+-(void)fetchLogsCountByModule:(NSString*)moduleName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch the log messages based on the Module
  *
@@ -95,7 +94,7 @@
  * @return Log object containing fetched messages.
  *
  */
--(Log*)fetchLogsByModule:(NSString*)moduleName;
+-(void)fetchLogsByModule:(NSString*)moduleName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch the log messages based on the Module by paging.
  *
@@ -109,7 +108,7 @@
  * @return Log object containing fetched messages.
  *
  */
--(Log*)fetchLogsByModule:(NSString*)moduleName max:(int)max offset:(int)offset;
+-(void)fetchLogsByModule:(NSString*)moduleName max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on the Module and Message Text
  *
@@ -122,7 +121,7 @@
  * @return App42Response object containing count of fetched messages.
  *
  */
--(App42Response*)fetchLogsCountByModuleAndText:(NSString*)moduleName text:(NSString*)text;
+-(void)fetchLogsCountByModuleAndText:(NSString*)moduleName text:(NSString*)text completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on the Module and Message Text
  *
@@ -134,7 +133,7 @@
  * @return Log object containing fetched messages.
  *
  */
--(Log*)fetchLogsByModuleAndText:(NSString*)moduleName text:(NSString*)text;
+-(void)fetchLogsByModuleAndText:(NSString*)moduleName text:(NSString*)text completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on the Module and Message Text by paging.
  *
@@ -151,35 +150,35 @@
  * @return Log object containing fetched messages.
  *
  */
--(Log*)fetchLogsByModuleAndText:(NSString*)moduleName text:(NSString*)text max:(int)max offset:(int)offset;
+-(void)fetchLogsByModuleAndText:(NSString*)moduleName text:(NSString*)text max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on Info Level
  *
  * @return App42Response object containing count of fetched info messages.
  *
  */
--(App42Response*)fetchLogsCountByInfo;
+-(void)fetchLogsCountByInfo:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on Debug Level
  *
  * @return App42Response object containing count of fetched debug messages.
  *
  */
--(App42Response*)fetchLogsCountByDebug;
+-(void)fetchLogsCountByDebug:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on Error Level
  *
  * @return App42Response object containing count of fetched error messages.
  *
  */
--(App42Response*)fetchLogsCountByError;
+-(void)fetchLogsCountByError:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on Fatal Level
  *
  * @return App42Response object containing count of fetched Fatal messages.
  *
  */
--(App42Response*)fetchLogsCountByFatal;
+-(void)fetchLogsCountByFatal:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetch log messages based on Info Level
@@ -187,28 +186,28 @@
  * @return Log object containing fetched info messages.
  *
  */
--(Log*)fetchLogsByInfo;
+-(void)fetchLogsByInfo:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Debug Level
  *
  * @return Log object containing fetched debug messages
  *
  */
--(Log*)fetchLogsByDebug;
+-(void)fetchLogsByDebug:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Error Level
  *
  * @return Log object containing fetched error messages
  *
  */
--(Log*)fetchLogsByError;
+-(void)fetchLogsByError:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Fatal Level
  *
  * @return Log object containing fetched Fatal messages
  *
  */
--(Log*)fetchLogsByFatal;
+-(void)fetchLogsByFatal:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Info Level by paging.
  *
@@ -220,7 +219,7 @@
  * @return Log object containing fetched info messages.
  * 
  */
--(Log*)fetchLogsByInfo:(int)max offset:(int)offset;
+-(void)fetchLogsByInfo:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Debug Level by paging.
  *
@@ -232,7 +231,7 @@
  * @return Log object containing fetched debug messages.
  *
  */
--(Log*)fetchLogsByDebug:(int)max offset:(int)offset;
+-(void)fetchLogsByDebug:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Error Level by paging.
  *
@@ -244,7 +243,7 @@
  * @return Log object containing fetched error messages.
  *
  */
--(Log*)fetchLogsByError:(int)max offset:(int)offset;
+-(void)fetchLogsByError:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Fatal Level by paging.
  *
@@ -256,7 +255,7 @@
  * @return Log object containing fetched Fatal messages.
  *
  */
--(Log*)fetchLogsByFatal:(int)max offset:(int)offset;
+-(void)fetchLogsByFatal:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on Date range
  * 
@@ -266,7 +265,7 @@
  *            End date upto which the count of log messages have to be fetched
  * @return App42Response object containing count of fetched messages.
  */
--(App42Response*)fetchLogCountByDateRange:(NSDate*)startDate endDate:(NSDate*)endDate;
+-(void)fetchLogCountByDateRange:(NSDate*)startDate endDate:(NSDate*)endDate completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch count of log messages based on Date range
  *
@@ -280,7 +279,7 @@
  * @return App42Response object containing count of fetched messages.
  *
  */
--(Log*)fetchLogByDateRange:(NSDate*)startDate endDate:(NSDate*)endDate;
+-(void)fetchLogByDateRange:(NSDate*)startDate endDate:(NSDate*)endDate completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch log messages based on Date range by paging.
  *
@@ -297,18 +296,18 @@
  * @return Log object containing fetched messages
  *
  */
--(Log*)fetchLogByDateRange:(NSDate*)startDate endDate:(NSDate*)endDate max:(int)max offset:(int)offset;
+-(void)fetchLogByDateRange:(NSDate*)startDate endDate:(NSDate*)endDate max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
  * Log event on App42 cloud for analytics purpose
  * @param eventName
  */
--(void)setEventWithName:(NSString*)eventName forModule:(NSString*)moduleName;
+-(void)setEventWithName:(NSString*)eventName forModule:(NSString*)moduleName completionBlock:(App42ResponseBlock)completionBlock;
 /**
 * Log event on App42 cloud for analytics purpose
 * @param eventName
 */
--(void)setEventWithName:(NSString*)eventName;
+-(void)setEventWithName:(NSString*)eventName completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

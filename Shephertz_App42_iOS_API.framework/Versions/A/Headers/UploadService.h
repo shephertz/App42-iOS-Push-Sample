@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UploadResponseBuilder.h"
 #import "Upload.h"
 #import "App42Service.h"
 /**
@@ -64,7 +63,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)uploadFile:(NSString*)name filePath:(NSString*)filePath uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description;
+-(void)uploadFile:(NSString*)name filePath:(NSString*)filePath uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Uploads file on the cloud via Stream.
  *
@@ -83,7 +82,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)uploadFile:(NSString*)name fileData:(NSData*)fileData uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description;
+-(void)uploadFile:(NSString*)name fileData:(NSData*)fileData uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Uploads file on the cloud for given user.
  *
@@ -104,7 +103,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)uploadFileForUser:(NSString*)name userName:(NSString*)userName filePath:(NSString*)filePath uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description;
+-(void)uploadFileForUser:(NSString*)name userName:(NSString*)userName filePath:(NSString*)filePath uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Uploads file on the cloud for given user via Stream.
  *
@@ -125,21 +124,21 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)uploadFileForUser:(NSString*)name userName:(NSString*)userName fileData:(NSData*)fileData uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description;
+-(void)uploadFileForUser:(NSString*)name userName:(NSString*)userName fileData:(NSData*)fileData uploadFileType:(NSString*)uploadFileType fileDescription:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Gets count of all the files for the App
  *
  * @return App42Response object
  *
  */
--(App42Response*)getAllFilesCount;
+-(void)getAllFilesCount:(App42ResponseBlock)completionBlock;
 /**
  * Gets all the files for the App
  *
  * @return Upload object
  *
  */
--(Upload*)getAllFiles;
+-(void)getAllFiles:(App42ResponseBlock)completionBlock;
 /**
  * Gets all the files By Paging for the App
  *
@@ -151,7 +150,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getAllFiles:(int)max offset:(int)offset;
+-(void)getAllFiles:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Gets the file based on user and file name.
  *
@@ -163,7 +162,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getFileByUser:(NSString*)fileName userName:(NSString*)userName;
+-(void)getFileByUser:(NSString*)fileName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Gets the count of file based on user name.
@@ -175,7 +174,7 @@ extern NSString *const OTHER;
  * @return App42Response object
  *
  */
--(App42Response*)getAllFilesCountByUser:(NSString*)userName;
+-(void)getAllFilesCountByUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Get all the file based on user name.
  *
@@ -185,7 +184,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getAllFilesByUser:(NSString*)userName;
+-(void)getAllFilesByUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Get all the files based on user name by Paging.
  *
@@ -198,7 +197,7 @@ extern NSString *const OTHER;
  *
  * @return Upload object
  */
--(Upload*)getAllFilesByUser:(NSString*)userName max:(int)max offset:(int)offset;
+-(void)getAllFilesByUser:(NSString*)userName max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Gets the file based on file name.
  *
@@ -208,7 +207,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getFileByName:(NSString*)name;
+-(void)getFileByName:(NSString*)name completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes the file based on file name and user name.
  *
@@ -220,7 +219,7 @@ extern NSString *const OTHER;
  * @return App42Response if deleted successfully
  *
  */
--(App42Response*)removeFileByUser:(NSString*)name userName:(NSString*)userName;
+-(void)removeFileByUser:(NSString*)name userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes the files based on user name.
  *
@@ -230,7 +229,7 @@ extern NSString *const OTHER;
  * @return App42Response if deleted successfully
  *
  */
--(App42Response*)removeAllFilesByUser:(NSString*)userName;
+-(void)removeAllFilesByUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes the file based on file name.
  *
@@ -240,14 +239,14 @@ extern NSString *const OTHER;
  * @return App42Response if deleted successfully
  *
  */
--(App42Response*)removeFileByName:(NSString*)name;
+-(void)removeFileByName:(NSString*)name completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes all the files for the App
  *
  * @return App42Response if deleted successfully
  *
  */
--(App42Response*)removeAllFiles;
+-(void)removeAllFiles:(App42ResponseBlock)completionBlock;
 /**
  * Get the count of files based on file type.
  *
@@ -257,7 +256,7 @@ extern NSString *const OTHER;
  * @return App42Response object
  *
  */
--(App42Response*)getFilesCountByType:(NSString*)uploadFileType;
+-(void)getFilesCountByType:(NSString*)uploadFileType completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Get the files based on file type.
  *
@@ -267,7 +266,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getFilesByType:(NSString*)uploadFileType;
+-(void)getFilesByType:(NSString*)uploadFileType completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get the files based on file type by Paging.
@@ -282,7 +281,7 @@ extern NSString *const OTHER;
  * @return Upload object
  *
  */
--(Upload*)getFilesByType:(NSString*)uploadFileType max:(int)max offset:(int)offset;
+-(void)getFilesByType:(NSString*)uploadFileType max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Grant access of files based on aclList.
@@ -296,9 +295,10 @@ extern NSString *const OTHER;
  *
  */
 
--(App42Response*)grantAccessOnFile:(NSString*)fileName
+-(void)grantAccessOnFile:(NSString*)fileName
                             ofUser:(NSString*)userName
-                       withAclList:(NSArray*) aclList;
+                       withAclList:(NSArray*) aclList
+                   completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Revoke access of files based on aclList.
@@ -311,9 +311,10 @@ extern NSString *const OTHER;
  * @return App42Response object
  *
  */
--(App42Response*)revokeAccessOnFile:(NSString*)fileName
+-(void)revokeAccessOnFile:(NSString*)fileName
                              ofUser:(NSString*)userName
-                        withAclList:(NSArray*) aclList;
+                        withAclList:(NSArray*) aclList
+                    completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -335,13 +336,14 @@ extern NSString *const OTHER;
  * @return Upload object
  * @throws App42Exception
  */
--(Upload*)uploadFileForGroup:(NSString*)fileName
+-(void)uploadFileForGroup:(NSString*)fileName
                     userName:(NSString*) userName
                    ownerName:(NSString*) ownerName
                    groupName:(NSString*) groupName
                     filePath:(NSString*) filePath
                     fileType:(NSString*) fileType
-                 description:(NSString*) description;
+                 description:(NSString*) description
+             completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -364,13 +366,14 @@ extern NSString *const OTHER;
  * @throws App42Exception
  */
 
--(Upload*)uploadFileForGroup:(NSString*) fileName
+-(void)uploadFileForGroup:(NSString*) fileName
                     userName:(NSString*) userName
                    ownerName:(NSString*) ownerName
                    groupName:(NSString*) groupName
                     fileData:(NSData  *) fileData
                     fileType:(NSString*) fileType
-                 description:(NSString*) description;
+                 description:(NSString*) description
+             completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -394,12 +397,13 @@ extern NSString *const OTHER;
  * @throws App42Exception
  */
 
--(Upload*)uploadFileForFriend:(NSString*)fileName
+-(void)uploadFileForFriend:(NSString*)fileName
                      userName:(NSString*) userName
                     buddyName:(NSString*) buddyName
                      filePath:(NSString*) filePath
                      fileType:(NSString*) fileType
-                  description:(NSString*) description;
+                  description:(NSString*) description
+              completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -420,12 +424,13 @@ extern NSString *const OTHER;
  * @throws App42Exception
  */
 
--(Upload*)uploadFileForFriend:(NSString*) fileName
+-(void)uploadFileForFriend:(NSString*) fileName
                      userName:(NSString*) userName
                     buddyName:(NSString*) buddyName
                      fileData:(NSData  *) fileData
                      fileType:(NSString*) fileType
-                  description:(NSString*) description;
+                  description:(NSString*) description
+              completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -445,10 +450,11 @@ extern NSString *const OTHER;
  * @throws App42Exception
  */
 
--(Upload*)uploadFileForFriends:(NSString*)fileName
+-(void)uploadFileForFriends:(NSString*)fileName
                       userName:(NSString*) userName
                       filePath:(NSString*) filePath
                       fileType:(NSString*) fileType
-                   description:(NSString*) description;
+                   description:(NSString*) description
+               completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

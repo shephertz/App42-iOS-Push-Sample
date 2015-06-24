@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EmailResponseBuilder.h"
 #import "App42Service.h"
 
 @class Email;
@@ -56,7 +55,7 @@ extern NSString *const HTML_TEXT_MIME_TYPE;
  *
  */
 
--(Email*)sendMail: (NSString*)sendTo subject:(NSString*)sendSubject Message:(NSString*)sendMsg fromEmail:(NSString*)fromEmail emailMIME:(NSString*)emailMIME;
+-(void)sendMail: (NSString*)sendTo subject:(NSString*)sendSubject Message:(NSString*)sendMsg fromEmail:(NSString*)fromEmail emailMIME:(NSString*)emailMIME completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Creates Email Configuration using which in future the App developer can
  * send mail
@@ -76,14 +75,14 @@ extern NSString *const HTML_TEXT_MIME_TYPE;
  *         created
  *
  */
--(Email*)createEmailConfiguration:(NSString*)emailHost emailPort:(int)emailPort emailId:(NSString*)mailId emailPassword:(NSString*)emailPassword isSSL:(BOOL)isSSL;
+-(void)createEmailConfiguration:(NSString*)emailHost emailPort:(int)emailPort emailId:(NSString*)mailId emailPassword:(NSString*)emailPassword isSSL:(BOOL)isSSL completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Gets all Email Configurations for the app
  *
  * @return Email object containing all Email Configurations
  *
  */
--(Email*)getEmailConfiguration;
+-(void)getEmailConfiguration:(App42ResponseBlock)completionBlock;
 /**
  * Removes email configuration for the given email id. Note: In future the
  * developer wont be able to send mails through this id
@@ -95,6 +94,6 @@ extern NSString *const HTML_TEXT_MIME_TYPE;
  *         removed
  *
  */
--(App42Response*)removeEmailConfiguration:(NSString*)emailId;
+-(void)removeEmailConfiguration:(NSString*)emailId completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

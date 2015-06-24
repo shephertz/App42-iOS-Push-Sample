@@ -52,6 +52,10 @@
  */
 @property(nonatomic,retain)NSString *thumbNailTinyUrl;
 /*!
+ *set and get the createdOn.
+ */
+@property(nonatomic,retain)NSString *createdOn;
+/*!
  *set and get the albumObject for Photo Object. 
  */
 @property(nonatomic,retain)Album *albumObject;

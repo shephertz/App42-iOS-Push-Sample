@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "ItemData.h"
-#import "CatatlogueResponseBuilder.h"
 #import "App42Service.h"
 /**
  * This Service provides a complete cloud based catalogue management. An app can
@@ -44,7 +43,7 @@
  * @returns Catalogue object
  *
  */
--(Catalogue*)createCatalogue:(NSString*)catalogueName catalogueDescription:(NSString*)catalogueDescription;
+-(void)createCatalogue:(NSString*)catalogueName catalogueDescription:(NSString*)catalogueDescription completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Creates a Category for a particular Catalogue e.g. Books, Music etc.
  *
@@ -58,7 +57,7 @@
  * @returns Catalogue object containing created category information
  *
  */
--(Catalogue*)createCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName categoryDescription:(NSString*)categoryDescription;
+-(void)createCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName categoryDescription:(NSString*)categoryDescription completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Creates a Item in a Category for a particular Catelogue
  *
@@ -73,7 +72,7 @@
  *
  * @see ItemData
  */
--(Catalogue*)addItem:(NSString*)catalogueName categoryName:(NSString*)categoryName itemData:(ItemData*)itemData;
+-(void)addItem:(NSString*)catalogueName categoryName:(NSString*)categoryName itemData:(ItemData*)itemData completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Fetches all items for a Catalogue
  *
@@ -83,7 +82,7 @@
  * @returns Catalogue object containing all Items
  *
  */
--(Catalogue*)getItems:(NSString*)catalogueName;
+-(void)getItems:(NSString*)catalogueName completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Fetches all items for a Catalogue and Category
  *
@@ -95,7 +94,7 @@
  * @returns Catalogue object
  *
  */
--(Catalogue*)getItemsByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName;
+-(void)getItemsByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Fetches count of all items for a Catalogue and Category
  *
@@ -109,7 +108,7 @@
  * @returns App42Response object
  *
  */
--(App42Response*)getItemsCountByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName;
+-(void)getItemsCountByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Fetches all items for a Catalogue and Category by paging.
  *
@@ -125,7 +124,7 @@
  * @returns Catalogue object
  *
  */
--(Catalogue*)getItemsByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName max:(int)max offset:(int)offset;
+-(void)getItemsByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;;
 
 /**
  * Fetches Item by id for a Catalogue and Category
@@ -140,7 +139,7 @@
  * @returns Catalogue object
  *
  */
--(Catalogue*)getItemById:(NSString*)catalogueName categoryName:(NSString*)categoryName itemId:(NSString*)itemId;
+-(void)getItemById:(NSString*)catalogueName categoryName:(NSString*)categoryName itemId:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;;
 
 /**
  * Removes all the Items of the given Catalogue.
@@ -151,7 +150,7 @@
  * @returns App42Response object containing all removed items
  *
  */
--(App42Response*)removeAllItems:(NSString*)catalogueName;
+-(void)removeAllItems:(NSString*)catalogueName completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Removes all the Items from a given Catalogue and Category
  *
@@ -164,7 +163,7 @@
  * @returns App42Response object containing removed items by category
  *
  */
--(App42Response*)removeItemsByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName;
+-(void)removeItemsByCategory:(NSString*)catalogueName categoryName:(NSString*)categoryName completionBlock:(App42ResponseBlock)completionBlock;;
 /**
  * Removes the Item for the given Id
  *
@@ -179,7 +178,7 @@
  * @returns App42Response object containing removed items by ID
  *
  */
--(App42Response*)removeItemById:(NSString*)catalogueName categoryName:(NSString*)categoryName itemId:(NSString*)itemId;
+-(void)removeItemById:(NSString*)catalogueName categoryName:(NSString*)categoryName itemId:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;;
 
 
 @end

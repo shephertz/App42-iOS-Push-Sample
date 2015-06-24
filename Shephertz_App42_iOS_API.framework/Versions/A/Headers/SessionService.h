@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SessionResponseBuilder.h"
 #import "Session.h"
 #import "App42Service.h"
 
@@ -40,7 +39,7 @@
  *         This id has to be used for storing or retrieving attributes.
  *
  */
--(Session*)getSession:(NSString*)uName;
+-(void)getSession:(NSString*)uName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Create User Session based on the isCreate boolean parameter. If isCreate
  * is true and there is an existing session for the user, the existing
@@ -59,7 +58,7 @@
  *         This id has to be used for storing or retrieving attributes.
  *
  */
--(Session*)getSession:(NSString*)uName isCreate:(BOOL)isCreate;
+-(void)getSession:(NSString*)uName isCreate:(BOOL)isCreate completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Invalidate a session based on the session id. All the attributes store in
  * the session will be lost.
@@ -70,7 +69,7 @@
  * @return App42Response if invalidated successfully
  *
  */
--(Session*)invalidate:(NSString*)sessionId;
+-(void)invalidate:(NSString*)sessionId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Sets attribute in a session whose session id is provided. Attributes are
  * stored in a key value pair.
@@ -85,7 +84,7 @@
  * @return Session object containing the attribute and value which is stored
  *
  */
--(Session*)setAttribute:(NSString *)sessionId attributeName:(NSString *)attributeName attributeValue:(NSString*) attributeValue;
+-(void)setAttribute:(NSString *)sessionId attributeName:(NSString *)attributeName attributeValue:(NSString*) attributeValue completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Gets the attribute value in a session whose session id is provided.
  *
@@ -98,7 +97,7 @@
  *         for the session id and attribute name
  *
  */
--(Session*)getAttribute:(NSString *)sessionId attributeName:(NSString *)attributeName;
+-(void)getAttribute:(NSString *)sessionId attributeName:(NSString *)attributeName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Get all the attributes for a given session id
  *
@@ -109,7 +108,7 @@
  *         stored for the session id
  *
  */
--(Session*)getAllAttributes:(NSString *)sessionId;
+-(void)getAllAttributes:(NSString *)sessionId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes the attribute from a session whose session id is provided.
  *
@@ -121,7 +120,7 @@
  * @return App42Response if removed successfully
  *
  */
--(App42Response*)removeAttribute:(NSString*)sessionId attributeName:(NSString*)attributeName;
+-(void)removeAttribute:(NSString*)sessionId attributeName:(NSString*)attributeName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes all the attributes for a given session id
  *
@@ -131,5 +130,5 @@
  * @return App42Response if removed successfully
  *
  */
--(App42Response*)removeAllAttributes:(NSString*)sessionId;
+-(void)removeAllAttributes:(NSString*)sessionId completionBlock:(App42ResponseBlock)completionBlock;
 @end

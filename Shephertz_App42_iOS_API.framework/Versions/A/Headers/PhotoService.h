@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AlbumResponseBuilder.h"
 #import "App42Service.h"
 
 @class Album;
@@ -48,7 +47,7 @@
  * @return Album object containing the Photo which has been added
  *
  */
--(Album*)addPhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription path:(NSString*)path;
+-(void)addPhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription path:(NSString*)path completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Adds Photo for a particular user and album via Stream. The Photo is
  * uploaded on the cloud
@@ -67,7 +66,7 @@
  * @return Album object containing the Photo which has been added
  *
  */
--(Album*)addPhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription fileData:(NSData*)fileData;
+-(void)addPhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription fileData:(NSData*)fileData completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Add tags to the Photos for the user in the album.
  *
@@ -83,7 +82,7 @@
  * @return Album object containing the Photo which has been added
  *
  **/
--(Album*)addTagToPhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName tagList:(NSArray*)tagList;
+-(void)addTagToPhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName tagList:(NSArray*)tagList completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all the Photos based on the userName
  *
@@ -94,7 +93,7 @@
  *         userName
  *
  */
--(NSArray*)getPhotos:(NSString*)userName;
+-(void)getPhotos:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all the Photos based on the userName and tag
  *
@@ -107,7 +106,7 @@
  *         userName
  *
  */
--(NSArray*)getTaggedPhotos:(NSString*)userName tag:(NSString*)tag;
+-(void)getTaggedPhotos:(NSString*)userName tag:(NSString*)tag completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches the count of all Photos based on the userName and album name
@@ -122,7 +121,7 @@
  *         the given userName and albumName
  *
  */
--(App42Response*)getPhotosCountByAlbumName:(NSString*)userName albumName:(NSString*)albumName;
+-(void)getPhotosCountByAlbumName:(NSString*)userName albumName:(NSString*)albumName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all Photos based on the userName and albumName
  *
@@ -135,7 +134,7 @@
  *         albumName
  *
  */
--(Album*)getPhotosByAlbumName:(NSString*)userName albumName:(NSString*)albumName;
+-(void)getPhotosByAlbumName:(NSString*)userName albumName:(NSString*)albumName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all Photos based on the userName and album name by paging.
  *
@@ -152,7 +151,7 @@
  *         albumName
  *
  */
--(Album*)getPhotosByAlbumName:(int)max offset:(int)offset userName:(NSString*)userName albumName:(NSString*)albumName;
+-(void)getPhotosByAlbumName:(int)max offset:(int)offset userName:(NSString*)userName albumName:(NSString*)albumName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the particular photo based on the userName, album name and photo
  * name
@@ -168,7 +167,7 @@
  *         albumName and photoName
  *
  */
--(Album*)getPhotosByAlbumAndPhotoName:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName;
+-(void)getPhotosByAlbumAndPhotoName:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes the particular Photo from the specified Album for a particular
  * user. Note: The Photo is removed from the cloud and wont be accessible in
@@ -184,7 +183,7 @@
  * @return App42Response if removed successfully
  *
  */
--(App42Response*)removePhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName;
+-(void)removePhoto:(NSString*)userName albumName:(NSString*)albumName photoName:(NSString*)photoName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Grant access to the particular Photo from the specified Album of a particular
@@ -202,11 +201,11 @@
  * @return Album object 
  *         
  */
-
--(Album*) grantAccessToPhoto:(NSString*)photoName
+-(void) grantAccessToPhoto:(NSString*)photoName
                      inAlbum:(NSString*)albumName
                       ofUser:(NSString*)userName
-                 withAclList:(NSArray *)aclList;
+                 withAclList:(NSArray *)aclList
+             completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Revoke access to the particular Photo from the specified Album of a particular
@@ -224,10 +223,11 @@
  * @return Album object
  *
  */
--(Album*) revokeAccessToPhoto:(NSString*)photoName
+-(void) revokeAccessToPhoto:(NSString*)photoName
                       inAlbum:(NSString*)albumName
                        ofUser:(NSString*)userName
-                  withAclList:(NSArray *)aclList;
+                  withAclList:(NSArray *)aclList
+              completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Update Photo to the specified Album of a particular user.
@@ -244,6 +244,6 @@
  * @return Album object
  *
  */
+-(void)updatePhoto:(NSString*)userName albumName:(NSString*)albumNam photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription path:(NSString*)path completionBlock:(App42ResponseBlock)completionBlock;
 
--(Album*)updatePhoto:(NSString*)userName albumName:(NSString*)albumNam photoName:(NSString*)photoName photoDescription:(NSString*)photoDescription path:(NSString*)path;
 @end

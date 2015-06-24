@@ -8,7 +8,6 @@
 
 
 #import <Foundation/Foundation.h>
-#import "CartResponseBuilder.h"
 #import "Cart.h"
 #import "App42Response.h"
 #import "App42Service.h"
@@ -62,7 +61,7 @@ extern NSString *const PENDING;
  *          be used in subsequent calls for adding and checking out
  *
  */
--(Cart*)createCart:(NSString*)user;
+-(void)createCart:(NSString*)user completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch Cart details. Can be used by the App developer to display Cart
  * Details i.e. Items in a Cart.
@@ -74,7 +73,7 @@ extern NSString *const PENDING;
  *          in it. It also tells the state of the Cart
  *
  */
--(Cart*)getCartDetails:(NSString*)cartId;
+-(void)getCartDetails:(NSString*)cartId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Adds an Item in the Cart with quantity and price. This method does not
  * take currency. Its the bonus of the App developer to maitain the
@@ -94,7 +93,7 @@ extern NSString *const PENDING;
  * @returns Cart object containing added item.
  *
  */
--(Cart*)addItem:(NSString*)cartID itemID:(NSString*)itemID itemQuantity:(int)itemQuantity price:(double)price;
+-(void)addItem:(NSString*)cartID itemID:(NSString*)itemID itemQuantity:(int)itemQuantity price:(double)price completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the Items from the specified Cart
  *
@@ -104,7 +103,7 @@ extern NSString *const PENDING;
  * @returns Cart object which contains all items in the cart
  *
  */
--(Cart*)getItems:(NSString*)cartId;
+-(void)getItems:(NSString*)cartId completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches the specified Item from the specified Cart
@@ -117,7 +116,7 @@ extern NSString *const PENDING;
  * @returns Cart Object
  *
  */
--(Cart*)getItem:(NSString*)cartId itemId:(NSString*)itemId;
+-(void)getItem:(NSString*)cartId itemId:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes the specified item from the specified Cart
  *
@@ -129,7 +128,7 @@ extern NSString *const PENDING;
  * @returns App42Response if removed successfully
  *
  */
--(App42Response*)removeItem:(NSString*)cartId itemId:(NSString*)itemId;
+-(void)removeItem:(NSString*)cartId itemId:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes all Items from the specified Cart
  *
@@ -139,7 +138,7 @@ extern NSString *const PENDING;
  * @returns App42Response if removed successfully
  *
  */
--(App42Response*)removeAllItems:(NSString*)cartId;
+-(void)removeAllItems:(NSString*)cartId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Checks whether the Cart is Empty or not
  *
@@ -150,7 +149,7 @@ extern NSString *const PENDING;
  *          status)
  *
  */
--(Cart*)isEmpty:(NSString*)cartId;
+-(void)isEmpty:(NSString*)cartId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Checks out the Cart and put it in CheckOut Stage and returns the
  * Transaction Id The transaction id has to be used in future to update the
@@ -163,7 +162,7 @@ extern NSString *const PENDING;
  *          Transaction Id
  *
  */
--(Cart*)checkOut:(NSString*)cartID;
+-(void)checkOut:(NSString*)cartID completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Update Payment Status of the Cart. When a Cart is checkout, it is in
  * Checkout state. The payment status has to be updated based on the Payment
@@ -182,7 +181,7 @@ extern NSString *const PENDING;
  * @returns Cart object which contains Payment Status
  *
  */
--(Cart*)payment:(NSString*)cartID transactionID:(NSString*)transactionID paymentStatus:(NSString*)paymentStatus;
+-(void)payment:(NSString*)cartID transactionID:(NSString*)transactionID paymentStatus:(NSString*)paymentStatus completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches Payment information for a User. This can be used to display Order
@@ -195,7 +194,7 @@ extern NSString *const PENDING;
  *          from individual Cart object.
  *
  */
--(NSArray*)getPaymentsByUser:(NSString*)userId;
+-(void)getPaymentsByUser:(NSString*)userId completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches Payment information for the specified Cart Id
@@ -207,7 +206,7 @@ extern NSString *const PENDING;
  *          Cart
  *
  */
--(Cart*)getPaymentByCart:(NSString*)cartID;
+-(void)getPaymentByCart:(NSString*)cartID completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches Payment information based on User Id and Status
@@ -223,7 +222,7 @@ extern NSString *const PENDING;
  * @returns Payment History
  *
  */
--(NSArray*)getPaymentsByUserAndStatus:(NSString*)userId status:(NSString*)paymentStatus;
+-(void)getPaymentsByUserAndStatus:(NSString*)userId status:(NSString*)paymentStatus completionBlock:(App42ResponseBlock)completionBlock;
 /**
  *
  * Fetches Payment information based on Status
@@ -235,7 +234,7 @@ extern NSString *const PENDING;
  *          from individual Cart object.
  *
  */
--(NSArray*)getPaymentsByStatus:(NSString*)paymentStatus;
+-(void)getPaymentsByStatus:(NSString*)paymentStatus completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -249,7 +248,7 @@ extern NSString *const PENDING;
  *          from individual Cart object.
  *
  */
--(NSArray*)getPaymentHistoryByUser:(NSString*)userId;
+-(void)getPaymentHistoryByUser:(NSString*)userId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * History of all carts. It gives all the carts which are in AUTHORIZED,
  * DECLINED, PENDING state.
@@ -258,7 +257,7 @@ extern NSString *const PENDING;
  *          from individual Cart object.
  *
  */
--(NSArray*)getPaymentHistoryAll;
+-(void)getPaymentHistoryAll:(App42ResponseBlock)completionBlock;
 /**
  * To increase quantity of existing item in the cart.
  *
@@ -274,7 +273,7 @@ extern NSString *const PENDING;
  * @returns Cart object containing updated item.
  *
  */
--(Cart*)increaseQuantity:(NSString*)cartID itemID:(NSString*)itemID itemQuantity:(int)itemQuantity;
+-(void)increaseQuantity:(NSString*)cartID itemID:(NSString*)itemID itemQuantity:(int)itemQuantity completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * To decrease quantity of existing item in the cart..
  *
@@ -290,6 +289,6 @@ extern NSString *const PENDING;
  * @returns Cart object containing updated item.
  *
  */
--(Cart*)decreaseQuantity:(NSString*)cartID itemID:(NSString*)itemID itemQuantity:(int)itemQuantity;
+-(void)decreaseQuantity:(NSString*)cartID itemID:(NSString*)itemID itemQuantity:(int)itemQuantity completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameResponseBuilder.h"
 #import "App42Service.h"
 /**
  * The Game service allows Game, User, Score and ScoreBoard Management on the
@@ -43,14 +42,14 @@
  * @return Game object containing the game which has been created
  *
  */
--(Game*)createGame:(NSString*)gameName gameDescription:(NSString*)gameDescription;
+-(void)createGame:(NSString*)gameName gameDescription:(NSString*)gameDescription completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the count of all games for the App
  *
  * @return App42Response object containing count of all the Game for the App
  * 
  */
--(App42Response*)getAllGamesCount;
+-(void)getAllGamesCount:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all games for the App
  *
@@ -58,7 +57,7 @@
  *
  *
  */
--(NSArray*)getAllGames;
+-(void)getAllGames:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all games for the App by paging.
  *
@@ -70,7 +69,7 @@
  * @return List of Game object containing all the games for the App
  *
  */
--(NSArray*)getAllGames:(int)max offset:(int)offset;
+-(void)getAllGames:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the game by the specified name
  *
@@ -80,8 +79,7 @@
  * @return Game object containing the game which has been created
  *
  */
--(Game*)getGameByName:(NSString*)gameName;
-
+-(void)getGameByName:(NSString*)gameName completionBlock:(App42ResponseBlock)completionBlock;
 
 
 @end

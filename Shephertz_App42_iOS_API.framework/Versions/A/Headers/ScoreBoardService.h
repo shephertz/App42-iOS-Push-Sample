@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameResponseBuilder.h"
 #import "App42Service.h"
 
 @class Game;
@@ -50,7 +49,7 @@
  * @return the saved score for a game
  * 
  */
--(Game*)saveUserScore:(NSString*)gameName gameUserName:(NSString*)gameUserName gameScore:(double)gameScore;
+-(void)saveUserScore:(NSString*)gameName gameUserName:(NSString*)gameUserName gameScore:(double)gameScore completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the scores for a game for the specified name
  *
@@ -62,7 +61,7 @@
  * @return the game score for the specified user
  *
  */
--(Game*)getScoresByUser:(NSString*)gameName gameUserName:(NSString*)gameUserName;
+-(void)getScoresByUser:(NSString*)gameName gameUserName:(NSString*)gameUserName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the highest game score for the specified user
  *
@@ -74,7 +73,7 @@
  * @return the highest game score for the specified user
  *
  */
--(Game*)getHighestScoreByUser:(NSString*)gameName gameUserName:(NSString*)gameUserName;
+-(void)getHighestScoreByUser:(NSString*)gameName gameUserName:(NSString*)gameUserName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the lowest game score for the specified user
  *
@@ -86,7 +85,7 @@
  * @return the lowest game score for the specified user
  *
  */
--(Game*)getLowestScoreByUser:(NSString*)gameName gameUserName:(NSString*)gameUserName;
+-(void)getLowestScoreByUser:(NSString*)gameName gameUserName:(NSString*)gameUserName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the Top Rankings for the specified game
  *
@@ -96,7 +95,7 @@
  * @return the Top rankings for a game
  *
  */
--(Game*)getTopRankings:(NSString*)gameName;
+-(void)getTopRankings:(NSString*)gameName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the average game score for the specified user
  *
@@ -108,7 +107,7 @@
  * @return the average game score for the specified user
  *
 */
--(Game*)getAverageScoreByUser:(NSString*)gameName userName:(NSString*)userName;
+-(void)getAverageScoreByUser:(NSString*)gameName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the Top Rankings for the specified game
  *
@@ -120,7 +119,7 @@
  * @return the Top rankings for a game
  *
  */
--(Game*)getTopNRankings:(NSString*)gameName max:(int)max;
+-(void)getTopNRankings:(NSString*)gameName max:(int)max completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Retrieves the Top N Rankers/Scorers for the specified game
@@ -133,7 +132,7 @@
  * @return the Top rankers for a game
  *
  */
--(Game*)getTopNRankers:(NSString*)gameName max:(int)max;
+-(void)getTopNRankers:(NSString*)gameName max:(int)max completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Retrieves the Top N Rankers/Scorers for the specified game within the
@@ -146,7 +145,7 @@
  * @return the Top rankers for a game
  *
  */
--(Game*)getTopRankersByGroup:(NSString*)gameName group:(NSArray*)group;
+-(void)getTopRankersByGroup:(NSString*)gameName group:(NSArray*)group completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Retrieves the Top N Rankings for the specified game within the
@@ -159,7 +158,7 @@
  * @return the Top rankers for a game
  *
  */
--(Game*)getTopRankingsByGroup:(NSString*)gameName group:(NSArray*)group;
+-(void)getTopRankingsByGroup:(NSString*)gameName group:(NSArray*)group completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Retrieves the Top Rankings for the specified game
@@ -173,7 +172,7 @@
  * @return the Top rankings for a game
  * @throws App42Exception
  */
--(Game*)getTopRankings:(NSString*)gameName startDate:(NSDate*) startDate endDate:(NSDate*) endDate;
+-(void)getTopRankings:(NSString*)gameName startDate:(NSDate*) startDate endDate:(NSDate*) endDate completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -185,7 +184,7 @@
  * @return
  * @throws App42Exception
  */
--(Game*)getTopNRankers:(NSString*)gameName startDate:(NSDate*) startDate endDate:(NSDate*) endDate max:(int)max;
+-(void)getTopNRankers:(NSString*)gameName startDate:(NSDate*) startDate endDate:(NSDate*) endDate max:(int)max completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -198,7 +197,7 @@
  *
  */
 
--(Game*)getLastGameScore:(NSString*)userName;
+-(void)getLastGameScore:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -212,7 +211,7 @@
  * @return the rank of the User
  *
  */
--(Game*)getUserRanking:(NSString*)gameName userName:(NSString*)userName;
+-(void)getUserRanking:(NSString*)gameName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * This function returns the top score attained by the specified user in the
@@ -225,7 +224,7 @@
  * @return Game Object
  * @throws App42Exception
  */
--(Game*)getLastScoreByUser:(NSString*)gameName userName:(NSString*)userName;
+-(void)getLastScoreByUser:(NSString*)gameName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -234,7 +233,7 @@
  * @return
  * @throws App42Exception
  */
--(Game*)editScoreValueById:(NSString*)scoreId gameScore:(double)gameScore;
+-(void)editScoreValueById:(NSString*)scoreId gameScore:(double)gameScore completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * This function returns the specified number of top rankers in a specific
@@ -251,10 +250,11 @@
  * @return Game Object
  * @throws App42Exception
  */
--(Game*)getTopRankersFromBuddyGroup:(NSString*) gameName
+-(void)getTopRankersFromBuddyGroup:(NSString*) gameName
                            userName:(NSString*) userName
                           ownerName:(NSString*)ownerName
-                          groupName:(NSString*)groupName;
+                          groupName:(NSString*)groupName
+                    completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -265,9 +265,10 @@
  * @return Game Object
  * @throws App42Exception
  */
--(Game*)getTopNRankersFromFacebook:(NSString*) gameName
+-(void)getTopNRankersFromFacebook:(NSString*) gameName
                      fbAccessToken:(NSString*)fbAccessToken
-                               max:(int)max;
+                               max:(int)max
+                   completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * This function returns the specified number of top rankers among facebook friends in specified
@@ -276,18 +277,19 @@
  * @param gameName
  *            - Name of the game
  * @param fbAccessToken
- * @param owerName
+ * @param startDate
  * @param endDate
  * @param max
  * @return Game Object
  * @throws App42Exception
  */
 
--(Game*)getTopNRankersFromFacebook:(NSString*)gameName
+-(void)getTopNRankersFromFacebook:(NSString*)gameName
                      fbAccessToken:(NSString*)fbAccessToken
                          startDate:(NSDate*)startDate
                            endDate:(NSDate*)endDate
-                               max:(int)max;
+                               max:(int)max
+                   completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -296,7 +298,7 @@
  * @return
  * @throws App42Exception
  */
--(Game*)getTopNTargetRankers:(NSString*)gameName max:(int) max;
+-(void)getTopNTargetRankers:(NSString*)gameName max:(int) max completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -306,7 +308,7 @@
  * @return Game object
  * @throws App42Exception
  */
--(Game*)getUsersWithScoreRange:(NSString*)gameName minScore:(double) minScore maxScore:(double)maxScore;
+-(void)getUsersWithScoreRange:(NSString*)gameName minScore:(double) minScore maxScore:(double)maxScore completionBlock:(App42ResponseBlock)completionBlock;
 
--(void)addCustomScore:(NSDictionary*)scoreDict collectionName:(NSString*) collectionName;
+-(void)addCustomScore:(NSDictionary*)scoreDict collectionName:(NSString*) collectionName completionBlock:(App42ResponseBlock)completionBlock;
 @end

@@ -22,7 +22,7 @@
     
     NSString *userName;
     NSString *cartId;
-    NSDate *createdOn;
+    NSDate *creationTime;
     NSDate *checkOutTime;
     NSString *state;
     BOOL isEmpty;
@@ -42,7 +42,7 @@
 /*!
  *set and get the creation time of the cart.
  */
-@property(nonatomic,retain)NSDate *createdOn;
+@property(nonatomic,retain)NSDate *creationTime;
 /*!
  *set and get the check out time of cart. 
  */

@@ -18,10 +18,16 @@ extern void APP42Log(NSString * format, ... ) NS_FORMAT_FUNCTION(1,2);
 +(NSString*)getBaseURL;
 +(void)setBaseURL:(NSString*)url;
 +(NSString*)getCustomCodeURL;
-
++(NSString*)getAnalyticsURL;
++(void)setAnalyticsBaseURL:(NSString*)url;
 
 +(NSString*)getLoggedInUser;
 +(void)setLoggedInUser:(NSString*)user;
+
++(BOOL)isAppStateEventTrackingEnabled;
++(BOOL)isEventServiceEnabled;
++(BOOL)isAppAliveTrackingEnabled;
+
 
 +(void)setCacheStoragePolicy:(NSURLRequestCachePolicy)cachePolicy;
 +(NSURLRequestCachePolicy)getCacheStoragePolicy;
@@ -43,6 +49,8 @@ extern void APP42Log(NSString * format, ... ) NS_FORMAT_FUNCTION(1,2);
 +(void)throwExceptionIfNotValidImageExtension:(NSString*)fileName name:(NSString*)name;
 +(void)validateHowMany:(int)howMany;
 +(void)enableApp42Log:(BOOL)isEnable;
++(void)throwExceptionIfStringIsNotAlphanumeric:(NSString*)obj objectName:(NSString*)name;
++(void)throwExceptionIfEventServiceNotEnabled;
 
 @end
 

@@ -69,7 +69,7 @@
 @property(nonatomic,retain) GeoTag *loc;
 
 /*!
- * Sets the ACL list on document object
+ * Sets the File list on document object
  */
 @property(nonatomic,retain)NSMutableArray *fileList;
 

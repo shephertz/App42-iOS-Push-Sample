@@ -38,7 +38,7 @@
  * @return Gift Object
  * @throws App42Exception
  */
--(Gift*)createGiftWithName:(NSString*)giftName giftIconPath:(NSString*)giftIconPath displayName:(NSString*)displayName giftTag:(NSString*)tag description:(NSString*)description;
+-(void)createGiftWithName:(NSString*)giftName giftIconPath:(NSString*)giftIconPath displayName:(NSString*)displayName giftTag:(NSString*)tag description:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get all gifts available.
@@ -46,7 +46,7 @@
  * @return NSArray of gift Object
  * @throws App42Exception
  */
--(NSArray*)getAllGifts;
+-(void)getAllGifts:(App42ResponseBlock)completionBlock;
 
 /**
  * Get gift with its name.
@@ -56,7 +56,7 @@
  * @return Gift Object
  * @throws App42Exception
  */
--(Gift*)getGiftByName:(NSString*)giftName;
+-(void)getGiftByName:(NSString*)giftName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get all gifts having same tag.
@@ -66,7 +66,7 @@
  * @return NSArray of gift Objects
  * @throws App42Exception
  */
--(NSArray*)getGiftsByTag:(NSString*)tag;
+-(void)getGiftsByTag:(NSString*)tag completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Delete a gift with name.
@@ -76,7 +76,7 @@
  * @return App42Response
  * @throws App42Exception
  */
--(App42Response*)deleteGiftByName:(NSString*)giftName;
+-(void)deleteGiftByName:(NSString*)giftName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send a gift with name to other users.
@@ -92,7 +92,7 @@
  * @return Gift Object
  * @throws App42Exception
  */
--(Gift*)sendGiftWithName:(NSString*)giftName from:(NSString*)sender to:(NSArray*)recipients withMessage:(NSString*)message;
+-(void)sendGiftWithName:(NSString*)giftName from:(NSString*)sender to:(NSArray*)recipients withMessage:(NSString*)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Request a gift with name from other users.
@@ -108,7 +108,7 @@
  * @return Gift Object
  * @throws App42Exception
  */
--(Gift*)requestGiftWithName:(NSString*)giftName from:(NSString*)sender to:(NSArray*)recipients withMessage:(NSString*)message;
+-(void)requestGiftWithName:(NSString*)giftName from:(NSString*)sender to:(NSArray*)recipients withMessage:(NSString*)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get a gift request from a user.
@@ -120,17 +120,17 @@
  * @return Gift Object
  * @throws App42Exception
  */
--(Gift*)getGiftRequestWithName:(NSString*)giftName fromUser:(NSString*)userName;
+-(void)getGiftRequestWithName:(NSString*)giftName fromUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 
--(Gift*)distributeGiftsWithName:(NSString*)giftName to:(NSArray*)recipients count:(int)count;
+-(void)distributeGiftsWithName:(NSString*)giftName to:(NSArray*)recipients count:(int)count completionBlock:(App42ResponseBlock)completionBlock;
 
--(App42Response*)getGiftCountWithName:(NSString*)giftName forUser:(NSString*)userName;
+-(void)getGiftCountWithName:(NSString*)giftName forUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
--(Gift*)acceptGiftRequestWithId:(NSString*)requestId by:(NSString*)recipient;
+-(void)acceptGiftRequestWithId:(NSString*)requestId by:(NSString*)recipient completionBlock:(App42ResponseBlock)completionBlock;
 
--(Gift*)rejectGiftRequestWithId:(NSString*)requestId by:(NSString*)recipient;
+-(void)rejectGiftRequestWithId:(NSString*)requestId by:(NSString*)recipient completionBlock:(App42ResponseBlock)completionBlock;
 
--(App42Response*)removeGiftWithRequestId:(NSString*)requestId by:(NSString*)recipient;
+-(void)removeGiftWithRequestId:(NSString*)requestId by:(NSString*)recipient completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

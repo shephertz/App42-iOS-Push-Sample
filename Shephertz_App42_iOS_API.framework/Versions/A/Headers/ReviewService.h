@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ReviewResponseBuilder.h"
 #import "App42Service.h"
 
 @class Review;
@@ -45,21 +44,21 @@
  * @return Review object containing the review which has been created
  *
  */
--(Review*)createReview:(NSString*)userId itemID:(NSString*)itemId reviewComment:(NSString*)reviewComment reviewRating:(double)reviewRating;
+-(void)createReview:(NSString*)userId itemID:(NSString*)itemId reviewComment:(NSString*)reviewComment reviewRating:(double)reviewRating completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all reviews for the App
  *
  * @return list of Review object containing all the reviews for the App
  *
  */
--(NSArray*)getAllReviews;
+-(void)getAllReviews:(App42ResponseBlock)completionBlock;
 /**
  * Fetches count of all reviews for the App
  *
  * @return App42Response containing count of all the reviews for the App
  *
  */
--(App42Response*)getAllReviewsCount;
+-(void)getAllReviewsCount:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all reviews for the App by Paging.
  *
@@ -71,7 +70,7 @@
  * @return list of Review object containing all the reviews for the App
  *
  */
--(NSArray*)getAllReviews:(int)max offset:(int)offset;
+-(void)getAllReviews:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the average review for the specified itemId
  *
@@ -81,7 +80,7 @@
  * @return Review object containing the average review for a item
  *
  */
--(Review*)getAverageReviewByItem:(NSString*)itemId;
+-(void)getAverageReviewByItem:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches count of All Reviews based on the itemId
  *
@@ -91,7 +90,8 @@
  * @return App42Response containing count of all the reviews for a item
  *
  */
--(App42Response*)getReviewsCountByItem:(NSString*)itemId;
+-(void)getReviewsCountByItem:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
+-(void)getReviewsCountByItem:(NSString*)itemId andRating:(double)rating completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches All Reviews based on the itemId
  *
@@ -101,7 +101,7 @@
  * @return list of Review object containing all the reviews for a item
  *
  */
--(NSArray*)getReviewsByItem:(NSString*)itemId;
+-(void)getReviewsByItem:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches All Reviews based on the itemId by Paging.
@@ -117,7 +117,7 @@
  *
  */
 
--(NSArray*)getReviewsByItem:(NSString*)itemId max:(int)max offset:(int)offset;
+-(void)getReviewsByItem:(NSString*)itemId max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the highest review for the specified itemId
  *
@@ -127,7 +127,7 @@
  * @return Review object containing the highest review for a item
  *
  */
--(Review*)getHighestReviewByItem:(NSString*)itemId;
+-(void)getHighestReviewByItem:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the lowest review for the specified itemId
  *
@@ -137,7 +137,7 @@
  * @return Review object containing the lowest review for a item
  *
  */
--(Review*)getLowestReviewByItem:(NSString*)itemId;
+-(void)getLowestReviewByItem:(NSString*)itemId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Mutes the specified review
  *
@@ -147,7 +147,7 @@
  * @return App42Response if muted successfully
  *
  */
--(App42Response*)mute:(NSString*)reviewId;
+-(void)mute:(NSString*)reviewId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * UnMutes the specified review
  *
@@ -157,10 +157,10 @@
  * @return App42Response if unmuted successfully
  *
  */
--(App42Response*)unmute:(NSString*)reviewId;
+-(void)unmute:(NSString*)reviewId completionBlock:(App42ResponseBlock)completionBlock;
 
--(Review*)addComment:(NSString*)comment byUser:(NSString*)userID forItem:(NSString*)itemID;
--(NSArray*)getCommentsByItem:(NSString*)itemID;
+-(void)addComment:(NSString*)comment byUser:(NSString*)userID forItem:(NSString*)itemID completionBlock:(App42ResponseBlock)completionBlock;
+-(void)getCommentsByItem:(NSString*)itemID completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -169,7 +169,7 @@
  * @throws App42Exception
  */
 
--(App42Response*)deleteReviewByReviewId:(NSString*) reviewId;
+-(void)deleteReviewByReviewId:(NSString*)reviewId completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -177,7 +177,7 @@
  * @return
  * @throws App42Exception
  */
--(App42Response*)deleteCommentByCommentId:(NSString*)commentId;
+-(void)deleteCommentByCommentId:(NSString*)commentId completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -185,6 +185,6 @@
  * @return
  * @throws App42Exception
  */
--(NSArray*)getAllReviewsByUser:(NSString*)userId;
+-(void)getAllReviewsByUser:(NSString*)userId completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

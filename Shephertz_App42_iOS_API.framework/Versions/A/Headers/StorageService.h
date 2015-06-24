@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StorageResponseBuilder.h"
 #import "App42Response.h"
 #import "App42Service.h"
 
@@ -50,7 +49,7 @@
  *
  *
  */
--(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName json:(NSString*)json;
+-(void)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName json:(NSString*)json completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Save the data supplied as Dictionary in the given database name and collection name.
@@ -66,8 +65,7 @@
  *
  *
  */
-
--(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName dataDict:(NSDictionary*)dataDict;
+-(void)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName dataDict:(NSDictionary*)dataDict completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Save the data supplied as JSON String with an attachment file in the given database name and collection name.
@@ -83,7 +81,7 @@
  *
  *
  */
--(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName json:(NSString*)json attachment:(App42File*)file;
+-(void)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName json:(NSString*)json attachment:(App42File*)file completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Save the data supplied as Dictionary with an attachment file in the given database name and collection name.
@@ -98,7 +96,7 @@
  * @return Storage object
  *
  */
--(Storage*)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName dataDict:(NSDictionary*)dataDict attachment:(App42File*)file;
+-(void)insertJSONDocument:(NSString*)dbName collectionName:(NSString*)collectionName dataDict:(NSDictionary*)dataDict attachment:(App42File*)file completionBlock:(App42ResponseBlock)completionBlock;;
 
 /**
  * Find all documents stored in given database and collection.
@@ -111,7 +109,7 @@
  * @return Storage object
  *
  */
--(Storage*)findAllDocuments:(NSString*)dbName collectionName:(NSString*)collectionName;
+-(void)findAllDocuments:(NSString*)dbName collectionName:(NSString*)collectionName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Gets the count of all documents stored in given database and collection.
  *
@@ -124,7 +122,7 @@
  *
  *
  */
--(App42Response*)findAllDocumentsCount:(NSString*)dbName collectionName:(NSString*)collectionName;
+-(void)findAllDocumentsCount:(NSString*)dbName collectionName:(NSString*)collectionName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Find all documents stored in given database and collection.
@@ -142,7 +140,7 @@
  *
  *
  */
--(Storage*)findAllDocuments:(NSString*)dbName collectionName:(NSString*)collectionName max:(int)max offset:(int)offset;
+-(void)findAllDocuments:(NSString*)dbName collectionName:(NSString*)collectionName max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -157,7 +155,7 @@
  *
  */
 
--(Storage*)findAllCollections:(NSString*)dbName;
+-(void)findAllCollections:(NSString*)dbName completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -174,7 +172,7 @@
  *
  *
  */
--(Storage*)findDocumentById:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId;
+-(void)findDocumentById:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Find target document using key value search parameter. This key value
  * pair will be searched in the JSON doc stored on the cloud and matching
@@ -193,7 +191,7 @@
  *
  *
  */
--(Storage*)findDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value;
+-(void)findDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Update target document using key value search parameter. This key value
  * pair will be searched in the JSON doc stored in the cloud and matching
@@ -214,7 +212,7 @@
  *
  *
  */
--(Storage*)updateDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value newJsonDoc:(NSString*)newJsonDoc;
+-(void)updateDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value newJsonDoc:(NSString*)newJsonDoc completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Update target document using key value search parameter. This key value
@@ -236,7 +234,7 @@
  * @throws App42Exception
  */
 
--(Storage*)updateDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value newDataDict:(NSDictionary*)newDataDict;
+-(void)updateDocumentByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value newDataDict:(NSDictionary*)newDataDict completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Update target document using the document id.
  *
@@ -253,7 +251,7 @@
  *
  *
  */
--(Storage*)updateDocumentByDocId:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId newJsonDoc:(NSString*)newJsonDoc;
+-(void)updateDocumentByDocId:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId newJsonDoc:(NSString*)newJsonDoc completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Update target document with NSDictionary doc using the document id.
@@ -270,7 +268,7 @@
  * @throws App42Exception
  */
 
--(Storage*)updateDocumentByDocId:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId newDataDict:(NSDictionary*)newDataDict;
+-(void)updateDocumentByDocId:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId newDataDict:(NSDictionary*)newDataDict completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Delete target document using Object Id from given db and collection. The
@@ -289,7 +287,7 @@
  *
  */
 
--(App42Response*)deleteDocumentById:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId;
+-(void)deleteDocumentById:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Save the JSON document in given database name and collection name. It
@@ -308,7 +306,7 @@
  *
  *
  */
--(Storage*)insertJsonDocUsingMap:(NSString*)dbName collectionName:(NSString*)collectionName map:(NSMutableDictionary*)map;
+-(void)insertJsonDocUsingMap:(NSString*)dbName collectionName:(NSString*)collectionName map:(NSMutableDictionary*)map completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Map reduce function to search the target document. Please see detail
  * information on map-reduce http://en.wikipedia.org/wiki/MapReduce
@@ -325,7 +323,7 @@
  * @return Returns the target JSON document.
  *
  */
--(NSString*)mapReduce:(NSString*)dbName collectionName:(NSString*)collectionName mapFunction:(NSString*)mapFunction reduceFunction:(NSString*)reduceFunction;
+-(void)mapReduce:(NSString*)dbName collectionName:(NSString*)collectionName mapFunction:(NSString*)mapFunction reduceFunction:(NSString*)reduceFunction completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -343,7 +341,7 @@
  *
  */
 
--(Storage*)findDocumentsByQuery:(Query*)query dbName:(NSString*)dbName collectionName:(NSString*)collectionName;
+-(void)findDocumentsByQuery:(Query*)query dbName:(NSString*)dbName collectionName:(NSString*)collectionName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Find target document using Custom Query with paging.
@@ -364,7 +362,7 @@
  * @throws App42Exception
  *
  */
--(Storage*)findDocumentsByQueryWithPaging:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query max:(int)max offset:(int)offset;
+-(void)findDocumentsByQueryWithPaging:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -387,28 +385,31 @@
  * @return
  * @throws App42Exception
  */
--(Storage*) findDocsWithQueryPagingOrderBy:(NSString*)dbName
+-(void) findDocsWithQueryPagingOrderBy:(NSString*)dbName
                             collectionName:(NSString*)collectionName
                                      query:(Query*)query
                                        max:(int)max
                                     offset:(int)offset
                                 orderByKey:(NSString*)orderByKey
-                               orderByType:(NSString*)orderType;
+                               orderByType:(NSString*)orderType
+                           completionBlock:(App42ResponseBlock)completionBlock;
 
--(Storage*)grantAccessOnDoc:(NSString*)dbName
+-(void)grantAccessOnDoc:(NSString*)dbName
              collectionName:(NSString*)collectionName
                       docId:(NSString*) docId
-                 andAclList:(NSArray*) aclList;
+                 andAclList:(NSArray*) aclList
+            completionBlock:(App42ResponseBlock)completionBlock;
 
--(Storage*)revokeAccessOnDoc:(NSString*)dbName
+-(void)revokeAccessOnDoc:(NSString*)dbName
               collectionName:(NSString*)collectionName
                        docId:(NSString*) docId
-                  andAclList:(NSArray*) aclList;
+                  andAclList:(NSArray*) aclList
+             completionBlock:(App42ResponseBlock)completionBlock;
 
--(App42Response*) deleteAllDocuments:(NSString*)dbName collectionName:(NSString*) collectionName;
+-(void) deleteAllDocuments:(NSString*)dbName collectionName:(NSString*) collectionName completionBlock:(App42ResponseBlock)completionBlock;
 
 
--(Storage*)findDocumentsByLocation:(NSString*)dbName collectionName:(NSString*)collectionName geoQuery:(GeoQuery*)query;
+-(void)findDocumentsByLocation:(NSString*)dbName collectionName:(NSString*)collectionName geoQuery:(GeoQuery*)query completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Delete target document using key and value from given db and collection.
  * The key value will be searched in the JSON doc stored on the cloud and
@@ -428,7 +429,7 @@
  * @throws App42Exception
  *
  */
--(App42Response*)deleteDocumentsByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value;
+-(void)deleteDocumentsByKeyValue:(NSString*)dbName collectionName:(NSString*)collectionName key:(NSString*)key value:(NSString*)value completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Update target document using key value search parameter. This key value
@@ -453,11 +454,12 @@
  *
  */
 
--(Storage*) saveOrUpdateDocumentByKeyValue:(NSString*)dbName
+-(void) saveOrUpdateDocumentByKeyValue:(NSString*)dbName
                             collectionName:(NSString*)collectionName
                                        key:(NSString*)key
                                      value:(NSString*)value
-                                newJsonDoc:(NSString*)newJsonDoc;
+                                newJsonDoc:(NSString*)newJsonDoc
+                           completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Update target document using key value search parameter. This key value
@@ -482,11 +484,12 @@
  *
  */
 
--(Storage*) saveOrUpdateDocumentByKeyValue:(NSString*)dbName
+-(void) saveOrUpdateDocumentByKeyValue:(NSString*)dbName
                             collectionName:(NSString*)collectionName
                                        key:(NSString*)key
                                      value:(NSString*)value
-                                  dataDict:(NSDictionary*)dataDict;
+                                  dataDict:(NSDictionary*)dataDict
+                           completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Add or Update keys of target document using doc id search parameter. This docId
@@ -509,10 +512,11 @@
  *
  */
 
--(Storage*) addOrUpdateKeys:(NSString*)dbName
+-(void) addOrUpdateKeys:(NSString*)dbName
              collectionName:(NSString*)collectionName
                       docId:(NSString*)docId
-                   dataDict:(NSDictionary*)dataDict;
+                   dataDict:(NSDictionary*)dataDict
+            completionBlock:(App42ResponseBlock)completionBlock;
 /**
  *
  * @param dbName
@@ -523,7 +527,7 @@
  * @throws App42Exception
  */
 
--(Storage*)addAttachmentToDocs:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId attachment:(App42File*)file;
+-(void)addAttachmentToDocs:(NSString*)dbName collectionName:(NSString*)collectionName docId:(NSString*)docId attachment:(App42File*)file completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -534,7 +538,7 @@
  * @return
  * @throws App42Exception
  */
--(Storage*)updateDocumentByQuery:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query newJsonDoc:(NSString*)newJsonDoc;
+-(void)updateDocumentByQuery:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query newJsonDoc:(NSString*)newJsonDoc completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -545,7 +549,7 @@
  * @return
  * @throws App42Exception
  */
--(Storage*)updateDocumentByQuery:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query newDataDict:(NSDictionary*)newDataDict;
+-(void)updateDocumentByQuery:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query newDataDict:(NSDictionary*)newDataDict completionBlock:(App42ResponseBlock)completionBlock;
 
--(App42Response*)findDocumentsByQueryCount:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query;
+-(void)findDocumentsByQueryCount:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*)query completionBlock:(App42ResponseBlock)completionBlock;
 @end

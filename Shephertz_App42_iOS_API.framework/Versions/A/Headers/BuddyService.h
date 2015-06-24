@@ -8,7 +8,7 @@
 
 #import "App42Service.h"
 #import "Buddy.h"
-#import "BuddyResponseBuilder.h"
+
 
 @class App42Response;
 @class GeoPoint;
@@ -39,7 +39,7 @@
  * @return - Buddy Object
  * @throws App42Exception
  */
--(Buddy*)sendFriendRequestFromUser:(NSString*)userName toBuddy:(NSString*) buddyName withMessage:(NSString*) message;
+-(void)sendFriendRequestFromUser:(NSString*)userName toBuddy:(NSString*) buddyName withMessage:(NSString*)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetch all the friend request for the user.
@@ -50,7 +50,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)getFriendRequest:(NSString *)userName;
+-(void)getFriendRequest:(NSString *)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Accept the friend request of the user.
@@ -63,7 +63,7 @@
  * @throws App42Exception
  */
 
--(Buddy*)acceptFriendRequestFromBuddy:(NSString*)buddyName toUser:(NSString*)userName;
+-(void)acceptFriendRequestFromBuddy:(NSString*)buddyName toUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Reject the friend request of the user
@@ -75,7 +75,7 @@
  * @return Buddy Object
  * @throws App42Exception
  */
--(Buddy*)rejectFriendRequestFromBuddy:(NSString*)buddyName toUser:(NSString*)userName;
+-(void)rejectFriendRequestFromBuddy:(NSString*)buddyName toUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -86,6 +86,7 @@
  * @return Buddy object
  * @throws App42Exception
  */
+-(void)createGroup:(NSString*)groupName byUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -95,9 +96,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)getAllFriends:(NSString*)userName;
-
--(Buddy*)createGroup:(NSString*)groupName byUser:(NSString*)userName;
+-(void)getAllFriends:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -111,7 +110,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)addFriends:(NSArray*)friends ofUser:(NSString*)userName toGroup:(NSString*)groupName;
+-(void)addFriends:(NSArray*)friends ofUser:(NSString*)userName toGroup:(NSString*)groupName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -122,7 +121,7 @@
  * @return buddy object
  * @throws App42Exception
  */
--(Buddy*)checkedInWithUser:(NSString*)userName geoLocation:(GeoPoint*)point;
+-(void)checkedInWithUser:(NSString*)userName geoLocation:(GeoPoint*)point completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -134,7 +133,7 @@
  * @return
  * @throws App42Exception
  */
--(NSArray*)getFriendsOfUser:(NSString *)userName withLatitude:(double)latitude andLongitude:(double)longitude inRadius:(double)maxDistance max:(int) max;
+-(void)getFriendsOfUser:(NSString *)userName withLatitude:(double)latitude andLongitude:(double)longitude inRadius:(double)maxDistance max:(int) max completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get All groups created by user
@@ -145,7 +144,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)getAllGroups:(NSString*)userName;
+-(void)getAllGroups:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get All friends in specific group
@@ -159,7 +158,7 @@
  * @return Buddy object
  * @throws App42Exception
  */
--(NSArray*)getAllFriendsOfUser:(NSString*)userName inGroup:(NSString*)groupName ofOwner:(NSString*)ownerName;
+-(void)getAllFriendsOfUser:(NSString*)userName inGroup:(NSString*)groupName ofOwner:(NSString*)ownerName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -194,7 +193,7 @@
  * @throws App42Exception
  */
 
--(Buddy*)blockFriendRequestFromBuddy:(NSString*)buddyName toUser:(NSString*)userName;
+-(void)blockFriendRequestFromBuddy:(NSString*)buddyName toUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Never get any request by this user
@@ -207,7 +206,7 @@
  * @throws App42Exception
  */
 
--(Buddy*)blockBuddy:(NSString*)buddyName byUser:(NSString*)userName;
+-(void)blockBuddy:(NSString*)buddyName byUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Unblock User
@@ -219,7 +218,7 @@
  * @return Buddy object
  * @throws App42Exception
  */
--(Buddy*)unblockBuddy:(NSString*)buddyName byUser:(NSString*)userName;
+-(void)unblockBuddy:(NSString*)buddyName byUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send the message to the group.
@@ -236,7 +235,7 @@
  * @return - Buddy Object
  * @throws App42Exception
  */
--(Buddy*)sendMessage:(NSString*)message fromUser:(NSString*)userName toGroup:(NSString*)groupName ofGroupOwner:(NSString*)ownerName;
+-(void)sendMessage:(NSString*)message fromUser:(NSString*)userName toGroup:(NSString*)groupName ofGroupOwner:(NSString*)ownerName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -246,7 +245,7 @@
  * @return
  * @throws App42Exception
  */
--(Buddy*)sendMessage:(NSString*)message toFriend:(NSString*)buddyName fromUser:(NSString*)userName;
+-(void)sendMessage:(NSString*)message toFriend:(NSString*)buddyName fromUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -255,7 +254,7 @@
  * @return
  * @throws App42Exception
  */
--(NSArray*)sendMessageToFriends:(NSString*)message fromUser:(NSString*)userName;
+-(void)sendMessageToFriends:(NSString*)message fromUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -263,7 +262,7 @@
  * @return
  * @throws App42Exception
  */
--(NSArray*)getAllMessages:(NSString*) userName;
+-(void)getAllMessages:(NSString*) userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -274,7 +273,7 @@
  * @return Buddy object
  * @throws App42Exception
  */
--(NSArray*)getAllMessagesFromBuddy:(NSString*)buddyName toUser:(NSString*)userName;
+-(void)getAllMessagesFromBuddy:(NSString*)buddyName toUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -288,7 +287,7 @@
  * @return Buddy object
  * @throws App42Exception
  */
--(NSArray*)getAllMessagesFromGroup:(NSString*)groupName ofGroupOwner:(NSString*)groupOwner toUser:(NSString*)userName;
+-(void)getAllMessagesFromGroup:(NSString*)groupName ofGroupOwner:(NSString*)groupOwner toUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  *
  * @param userName
@@ -297,7 +296,7 @@
  * @throws App42Exception
  */
 
--(App42Response*)unFriend:(NSString*)userName buddyName:(NSString*)buddyName;
+-(void)unFriend:(NSString*)userName buddyName:(NSString*)buddyName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -306,7 +305,7 @@
  * @return
  * @throws App42Exception
  */
--(App42Response*)deleteMessageById:(NSString*)messageId userName:(NSString*)userName;
+-(void)deleteMessageById:(NSString*)messageId userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -315,5 +314,5 @@
  * @return
  * @throws App42Exception
  */
--(App42Response*)deleteMessageByIds:(NSArray*)messageIds userName:(NSString*)userName;
+-(void)deleteMessageByIds:(NSArray*)messageIds userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 @end

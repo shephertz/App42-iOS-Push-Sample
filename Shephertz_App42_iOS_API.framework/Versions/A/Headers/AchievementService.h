@@ -33,7 +33,7 @@
  * @throws App42Exception
  */
 
--(Achievement*)createAchievementWithName:(NSString*)achievementName description:(NSString*)description;
+-(void)createAchievementWithName:(NSString*)achievementName description:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *   App users can earn achievements based on your custom rules in your game.
@@ -45,7 +45,7 @@
  * @throws App42Exception
  */
 
--(Achievement*)earnAchievementWithName:(NSString*)achievementName userName:(NSString*)userName gameName:(NSString*)gameName description:(NSString*)description;
+-(void)earnAchievementWithName:(NSString*)achievementName userName:(NSString*)userName gameName:(NSString*)gameName description:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *  Fetch all the achievements of user.
@@ -55,7 +55,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)getAllAchievementsForUser:(NSString*)userName;
+-(void)getAllAchievementsForUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *   Fetch all the achievements by user in a particular game.
@@ -66,7 +66,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)getAllAchievementsForUser:(NSString*)userName inGame:(NSString*)gameName;
+-(void)getAllAchievementsForUser:(NSString*)userName inGame:(NSString*)gameName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * View detail description of all achievements created in app.
@@ -76,7 +76,7 @@
  * @throws App42Exception
  */
 
--(NSArray*)getAllAchievements;
+-(void)getAllAchievements:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetch detail description of achievement by achievement name.
@@ -86,7 +86,7 @@
  * @throws App42Exception
  */
 
--(Achievement*)getAchievementByName:(NSString*)achievementName;
+-(void)getAchievementByName:(NSString*)achievementName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetch all users who have earn particular achievement in specific game.
@@ -96,6 +96,6 @@
  * @return Achievement Object
  * @throws App42Exception
  */
--(NSArray*)getAllUsersWithAchievement:(NSString*)achievementName inGame:(NSString*)gameName;
+-(void)getAllUsersWithAchievement:(NSString*)achievementName inGame:(NSString*)gameName completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

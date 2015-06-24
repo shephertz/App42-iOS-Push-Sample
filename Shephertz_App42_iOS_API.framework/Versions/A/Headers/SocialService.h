@@ -39,7 +39,7 @@
  *
  */
 
--(Social*)linkUserFacebookAccount:(NSString *)userName appId:(NSString*)appId appSecret:(NSString*)appSecret accessToken:(NSString*)accessToken;
+-(void)linkUserFacebookAccount:(NSString *)userName appId:(NSString*)appId appSecret:(NSString*)appSecret accessToken:(NSString*)accessToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Links the User Facebook access credentials to the App User account.
@@ -53,7 +53,7 @@
  * @returns The Social object
  *
  */
--(Social*)linkUserFacebookAccount:(NSString *)userName accessToken:(NSString*)accessToken;
+-(void)linkUserFacebookAccount:(NSString *)userName accessToken:(NSString*)accessToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Updates the Facebook status of the specified user.
@@ -67,7 +67,7 @@
  *
  *
  */
--(Social *)updateFacebookStatus:(NSString *)userName status:(NSString*)status;
+-(void)updateFacebookStatus:(NSString *)userName status:(NSString*)status completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Links the User Twitter access credentials to the App User account.
  *
@@ -88,7 +88,7 @@
  *
  *
  */
--(Social *)linkUserTwitterAccount:(NSString *)userName consumerKey:(NSString*)consumerKey consumerSecret:(NSString*)consumerSecret accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret;
+-(void)linkUserTwitterAccount:(NSString *)userName consumerKey:(NSString*)consumerKey consumerSecret:(NSString*)consumerSecret accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Links the User Twitter access credentials to the App User account.
@@ -105,7 +105,7 @@
  * @returns The Social object
  *
  */
--(Social *)linkUserTwitterAccount:(NSString *)userName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret;
+-(void)linkUserTwitterAccount:(NSString *)userName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Updates the Twitter status of the specified user.
  *
@@ -118,7 +118,7 @@
  *
  *
  */
--(Social *)updateTwitterStatus:(NSString *)userName status:(NSString*)status;
+-(void)updateTwitterStatus:(NSString *)userName status:(NSString*)status completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Links the User LinkedIn access credentials to the App User account.
  *
@@ -138,7 +138,7 @@
  * @returns The Social object
  *
  */
--(Social *)linkUserLinkedInAccount:(NSString *)userName apiKey:(NSString*)linkedInApiKey secretKey:(NSString*)linkedInSecretKey accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret;
+-(void)linkUserLinkedInAccount:(NSString *)userName apiKey:(NSString*)linkedInApiKey secretKey:(NSString*)linkedInSecretKey accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Links the User LinkedIn access credentials to the App User account.
@@ -155,7 +155,7 @@
  * @returns The Social object
  *
  */
--(Social *)linkUserLinkedInAccount:(NSString *)userName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret;
+-(void)linkUserLinkedInAccount:(NSString *)userName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Updates the LinkedIn status of the specified user.
@@ -168,7 +168,7 @@
  * @returns The Social object
  *
  */
--(Social *)updateLinkedInStatus:(NSString *)userName status:(NSString*)status;
+-(void)updateLinkedInStatus:(NSString *)userName status:(NSString*)status completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Updates the status for all linked social accounts of the specified user.
  *
@@ -180,7 +180,7 @@
  * @returns The Social object
  *
  */
--(Social *)updateSocialStatusForAll:(NSString *)userName status:(NSString*)status;
+-(void)updateSocialStatusForAll:(NSString *)userName status:(NSString*)status completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -193,7 +193,7 @@
  * @return Social Object
  * @throws App42Exception
  */
--(Social *)getFacebookFriendsFromLinkUser:(NSString *) userName;
+-(void)getFacebookFriendsFromLinkUser:(NSString *) userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * This function returns a list of facebook friends of the specified user
@@ -205,7 +205,7 @@
  * @return Social Object
  * @throws App42Exception
  */
--(Social *)getFacebookFriendsFromAccessToken:(NSString *)accessToken;
+-(void)getFacebookFriendsFromAccessToken:(NSString *)accessToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -224,7 +224,7 @@
  * @throws App42Exception
  */
 
--(App42Response*)facebookPublishStream:(NSString *)accessToken fileName:(NSString*)fileName filePath:(NSString*)filePath message:(NSString*) message;
+-(void)facebookPublishStream:(NSString *)accessToken fileName:(NSString*)fileName filePath:(NSString*)filePath message:(NSString*) message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -241,7 +241,7 @@
  * @throws App42Exception
  */
 
--(App42Response*)facebookLinkPost:(NSString*)accessToken link:(NSString*)link message:(NSString*) message;
+-(void)facebookLinkPost:(NSString*)accessToken link:(NSString*)link message:(NSString*) message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -266,8 +266,8 @@
  * @throws App42Exception
  */
 
--(App42Response*)facebookLinkPostWithCustomThumbnail:(NSString*)accessToken link:(NSString*)link message:(NSString*)message
-                                          pictureUrl:(NSString*) pictureUrl fileName:(NSString*)fileName  description:(NSString*) description;
+-(void)facebookLinkPostWithCustomThumbnail:(NSString*)accessToken link:(NSString*)link message:(NSString*)message
+                                          pictureUrl:(NSString*) pictureUrl fileName:(NSString*)fileName  description:(NSString*) description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetch the profile info like profile pic ,facebookID and user name based
@@ -280,7 +280,7 @@
  * @throws App42Exception
  */
 
--(Social*)getFacebookProfile:(NSString*)accessToken;
+-(void)getFacebookProfile:(NSString*)accessToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get the facebook profile info for the gives IDs
@@ -292,6 +292,6 @@
  * @throws App42Exception
  */
 
--(Social*)getFacebookProfilesFromIds:(NSArray*) facebookIds;
+-(void)getFacebookProfilesFromIds:(NSArray*) facebookIds completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

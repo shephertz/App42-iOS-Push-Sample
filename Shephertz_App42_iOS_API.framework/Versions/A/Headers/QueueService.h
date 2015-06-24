@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QueueResponseBuilder.h"
 #import "App42Service.h"
 
 @class Queue;
@@ -21,6 +20,7 @@
  */
 @interface QueueService : App42Service
 {
+    
 }
 
 -(id)init __attribute__((unavailable));
@@ -37,7 +37,7 @@
  * @return Queue object containing queue name which has been created
  *
  */
--(Queue*)createPullQueue:(NSString*)queueName description:(NSString*)queueDescription;
+-(void)createPullQueue:(NSString*)queueName description:(NSString*)queueDescription completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Deletes the Pull type Queue
  *
@@ -47,7 +47,7 @@
  * @return App42Response if deleted successfully
  *
  */
--(App42Response*)deletePullQueue:(NSString*)queueName;
+-(void)deletePullQueue:(NSString*)queueName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Purges message on the Queue. Note: once the Queue is purged the messages
  * are removed from the Queue and wont be available for dequeuing.
@@ -58,7 +58,7 @@
  * @return App42Response object containing queue name which has been purged
  *
  */
--(App42Response*)purgePullQueue:(NSString*)queueName;
+-(void)purgePullQueue:(NSString*)queueName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Messages which are pending to be dequeue. Note: Calling this method does
  * not dequeue the messages in the Queue. The messages stay in the Queue
@@ -71,7 +71,7 @@
  * @return Queue object containing pending messages in the Queue
  *
  */
--(Queue*)pendingMessages:(NSString*)queueName;
+-(void)pendingMessages:(NSString*)queueName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Messages are retrieved and dequeued from the Queue.
@@ -85,7 +85,7 @@
  *
  */
 
--(Queue*)getMessages:(NSString*)queueName receiveTimeOut:(long)receiveTimeOut;
+-(void)getMessages:(NSString*)queueName receiveTimeOut:(long)receiveTimeOut completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send message on the queue with an expiry. The message will expire if it
@@ -102,7 +102,7 @@
  *         message id and correlation id
  *
  */
--(Queue*)sendMessage:(NSString*)queueName message:(NSString*)msg expiryTime:(long)exp;
+-(void)sendMessage:(NSString*)queueName message:(NSString*)msg expiryTime:(long)exp completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Pulls all the message from the queue
  *
@@ -114,7 +114,7 @@
  * @return Queue object containing messages which have been pulled
  *
  */
--(Queue*)receiveMessage:(NSString*)queueName receiveTimeOut:(long)receiveTimeOut;
+-(void)receiveMessage:(NSString*)queueName receiveTimeOut:(long)receiveTimeOut completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Pull message based on the correlation id
  *
@@ -130,7 +130,7 @@
  *         correlation id
  *
  */
--(Queue*)receiveMessageByCorrelationId:(NSString*)queueName receiveTimeOut:(long)receiveTimeOut correlationId:(NSString*)correlationId;
+-(void)receiveMessageByCorrelationId:(NSString*)queueName receiveTimeOut:(long)receiveTimeOut correlationId:(NSString*)correlationId completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Remove message from the queue based on the message id. Note: Once the
  * message is removed it cannot be pulled
@@ -144,7 +144,7 @@
  * @return App42Response if removed successfully
  *
  */
--(App42Response*)removeMessage:(NSString*)queueName messageId:(NSString*)messageId;
+-(void)removeMessage:(NSString*)queueName messageId:(NSString*)messageId completionBlock:(App42ResponseBlock)completionBlock;
 
 
 

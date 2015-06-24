@@ -29,7 +29,7 @@
  * @return
  * @throws App42Exception
  */
--(ABTest*)goalAchievedForTest:(NSString*)testName withVariant:(NSString*)variantName;
+-(void)goalAchievedForTest:(NSString*)testName withVariant:(NSString*)variantName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Executes given TestCase and returns variant profile from server
@@ -37,7 +37,7 @@
  * @return
  * @throws App42Exception
  */
--(ABTest*)execute:(NSString*) testName;
+-(void)execute:(NSString*)testName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Executes given Data Driven TestCase and returns variant profile from server
@@ -45,9 +45,9 @@
  * @return
  * @throws App42Exception
  */
--(ABTest*)executeDataDriven:(NSString*) testName;
+-(void)executeDataDriven:(NSString*)testName completionBlock:(App42ResponseBlock)completionBlock;
 
--(BOOL)isActive:(NSString*) testName;
+-(void)isActive:(NSString*)testName completionBlock:(App42ResponseBlock)completionBlock;
 
 
 @end

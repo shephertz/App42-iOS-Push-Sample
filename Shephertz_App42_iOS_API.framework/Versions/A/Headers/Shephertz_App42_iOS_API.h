@@ -13,7 +13,6 @@
 #import <Shephertz_App42_iOS_API/PublicProfile.h>
 #import <Shephertz_App42_iOS_API/Friends.h>
 
-#import <Shephertz_App42_iOS_API/ServiceAPI.h>
 #import <Shephertz_App42_iOS_API/App42API.h>
 #import <Shephertz_App42_iOS_API/Utils.h>
 #import <Shephertz_App42_iOS_API/CustomCodeService.h>
@@ -54,26 +53,6 @@
 
 #import <Shephertz_App42_iOS_API/ACL.h>
 
-#import <Shephertz_App42_iOS_API/Bill.h>
-#import <Shephertz_App42_iOS_API/BillService.h>
-#import <Shephertz_App42_iOS_API/LicenseTransaction.h>
-#import <Shephertz_App42_iOS_API/TimeTransaction.h>
-#import <Shephertz_App42_iOS_API/BandwidthTransaction.h>
-#import <Shephertz_App42_iOS_API/LevelTransaction.h>
-#import <Shephertz_App42_iOS_API/FeatureTransaction.h>
-#import <Shephertz_App42_iOS_API/StorageTransaction.h>
-#import <Shephertz_App42_iOS_API/TransactionL.h>
-#import <Shephertz_App42_iOS_API/TransactionT.h>
-#import <Shephertz_App42_iOS_API/TransactionB.h>
-#import <Shephertz_App42_iOS_API/TransactionLvl.h>
-#import <Shephertz_App42_iOS_API/TransactionF.h>
-#import <Shephertz_App42_iOS_API/TransactionS.h>
-
-
-#import <Shephertz_App42_iOS_API/License.h>
-#import <Shephertz_App42_iOS_API/LicenseService.h>
-
-
 #import <Shephertz_App42_iOS_API/Cart.h>
 #import <Shephertz_App42_iOS_API/Catalogue.h>
 #import <Shephertz_App42_iOS_API/CatalogueService.h>
@@ -86,14 +65,6 @@
 
 
 
-#import <Shephertz_App42_iOS_API/Usage.h>
-#import <Shephertz_App42_iOS_API/UsageService.h>
-#import <Shephertz_App42_iOS_API/LevelUsage.h>
-#import <Shephertz_App42_iOS_API/OneTimeUsage.h>
-#import <Shephertz_App42_iOS_API/BandwidthUsage.h>
-#import <Shephertz_App42_iOS_API/StorageUsage.h>
-#import <Shephertz_App42_iOS_API/TimeUsage.h>
-#import <Shephertz_App42_iOS_API/FeatureUsage.h>
 
 #import <Shephertz_App42_iOS_API/StorageService.h>
 #import <Shephertz_App42_iOS_API/JSONDocument.h>
@@ -103,14 +74,12 @@
 #import "GeoQuery.h"
 #import <Shephertz_App42_iOS_API/Buddy.h>
 #import <Shephertz_App42_iOS_API/BuddyService.h>
-#import <Shephertz_App42_iOS_API/BuddyResponseBuilder.h>
 
 
 
 #import <Shephertz_App42_iOS_API/ABTest.h>
 #import <Shephertz_App42_iOS_API/Variant.h>
 #import <Shephertz_App42_iOS_API/ABTestService.h>
-#import <Shephertz_App42_iOS_API/ABTestResponseBuilder.h>
 
 #import <Shephertz_App42_iOS_API/Upload.h>
 #import <Shephertz_App42_iOS_API/UploadService.h>
@@ -141,7 +110,6 @@
 #import <Shephertz_App42_iOS_API/Achievement.h>
 #import <Shephertz_App42_iOS_API/AchievementService.h>
 
-
 #import <Shephertz_App42_iOS_API/Image.h>
 #import <Shephertz_App42_iOS_API/ImageProcessorService.h>
 
@@ -151,7 +119,6 @@
 #import <Shephertz_App42_iOS_API/App42LimitException.h>
 #import <Shephertz_App42_iOS_API/App42NotFoundException.h>
 #import <Shephertz_App42_iOS_API/App42SecurityException.h>
-
 
 #import <Shephertz_App42_iOS_API/JSON.h>
 #import <Shephertz_App42_iOS_API/NSString+SBJSON.h>
@@ -165,5 +132,8 @@
 
 #import <Shephertz_App42_iOS_API/Timer.h>
 #import <Shephertz_App42_iOS_API/TimerService.h>
-#import <Shephertz_App42_iOS_API/TimerResponseBuilder.h>
+
+#import <Shephertz_App42_iOS_API/EventService.h>
+
+#import <Shephertz_App42_iOS_API/App42CacheManager.h>
 

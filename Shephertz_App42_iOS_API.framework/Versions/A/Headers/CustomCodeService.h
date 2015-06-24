@@ -31,6 +31,6 @@
  *            - Request Body in JSON format
  * @return JSONObject
  */
--(App42Response*) runJavaCode:(NSString*)name requestBody:(NSDictionary*)requestBody;
+-(void) runJavaCode:(NSString*)name requestBody:(NSDictionary*)requestBody completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AlbumResponseBuilder.h"
 #import "App42Service.h"
 
 @class Album;
@@ -46,7 +45,7 @@
  * @return Album object containing the album which has been created
  *
  */
--(Album*)createAlbum:(NSString*)userName albumName:(NSString*)albumName albumDescription:(NSString*)albumDescription;
+-(void)createAlbum:(NSString*)userName albumName:(NSString*)albumName albumDescription:(NSString*)albumDescription completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the count of all the Albums based on the userName
  *
@@ -57,7 +56,7 @@
  *         the given userName
  *
  */
--(App42Response*)getAlbumsCount:(NSString*)userName;
+-(void)getAlbumsCount:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetches all the Albums based on the userName
@@ -69,7 +68,7 @@
  *         userName
  *
  */
--(NSArray*)getAlbums:(NSString*)userName;
+-(void)getAlbums:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all the Albums based on the userName by Paging.
  *
@@ -84,7 +83,7 @@
  *         userName
  *
  */
--(NSArray*)getAlbums:(NSString*)userName max:(int)max offset:(int)offset;
+-(void)getAlbums:(NSString*)userName max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch all Albums based on userName and albumName
  *
@@ -97,7 +96,7 @@
  *         and albumName
  *
  */
--(Album*)getAlbumByName:(NSString*)userName albumName:(NSString*)albumName;
+-(void)getAlbumByName:(NSString*)userName albumName:(NSString*)albumName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Removes a particular album based on the userName and albumName. Note: All
  * photos added to this Album will also be removed
@@ -110,6 +109,6 @@
  * @return App42Response if removed successfully
  *
  */
--(App42Response*)removeAlbum:(NSString*)userName albumName:(NSString*)albumName;
+-(void)removeAlbum:(NSString*)userName albumName:(NSString*)albumName completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

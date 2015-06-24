@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PushNotification.h"
-#import "PushNotificationResponseBuilder.h"
+
 
 /**
  * The service is for pushing the notifications to any device using APNS(Apple Push Notification Service).
@@ -47,7 +47,7 @@ extern NSString *const DEVELOPMENT;
  * @param environment environment for the certificate whether it would be development or production
  * @return PushNotification Object
  */
-- (PushNotification*)uploadFile:(NSString*)password filePath:(NSString*)filePath environment:(NSString*)environment;
+- (void)uploadFile:(NSString*)password filePath:(NSString*)filePath environment:(NSString*)environment completionBlock:(App42ResponseBlock)completionBlock;
 
 /** Stores your device token on server with particular username
  * 
@@ -55,9 +55,9 @@ extern NSString *const DEVELOPMENT;
  * @param deviceToken device id for android phones
  * @return PushNotification Object
  */
-//- (PushNotification*)storeDeviceToken:(NSString *)userName:(NSString *)deviceToken;
+//- (void)storeDeviceToken:(NSString *)userName:(NSString *)deviceToken;
 
-- (PushNotification*)registerDeviceToken:(NSString *)deviceToken withUser:(NSString *)userName;
+- (void)registerDeviceToken:(NSString *)deviceToken withUser:(NSString *)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /** Create Channel for app on which user can subscribe and get the notification for that 
  * channel
@@ -65,7 +65,7 @@ extern NSString *const DEVELOPMENT;
  * @param description = description for that channel
  * @return PushNotification Object
  */
-- (PushNotification*)createChannelForApp:(NSString *)channel description:(NSString *)description;
+- (void)createChannelForApp:(NSString *)channel description:(NSString *)description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Subscribe to the channel
@@ -77,7 +77,7 @@ extern NSString *const DEVELOPMENT;
  * @return PushNotification Object
  * @throws App42Exception
  */
-- (PushNotification*)subscribeToChannel:(NSString *)channel userName:(NSString *)userName;
+- (void)subscribeToChannel:(NSString *)channel userName:(NSString *)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Unsubscribe from particular channel
@@ -89,7 +89,7 @@ extern NSString *const DEVELOPMENT;
  * @return PushNotification Object
  * @throws App42Exception
  */
-- (PushNotification*)unsubscribeFromChannel:(NSString *)channel userName:(NSString *)userName;
+- (void)unsubscribeFromChannel:(NSString *)channel userName:(NSString *)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Subscribe to the channel
@@ -98,12 +98,12 @@ extern NSString *const DEVELOPMENT;
  * @param deviceToken deviceToken for which you want to subscribe
  * @return PushNotification Object
  */
-- (PushNotification*)subscribeToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken;
+- (void)subscribeToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * This API is Deprecated from Version 2.2
  */
-- (PushNotification*)subscribeToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken deviceType:(NSString*)deviceType;
+- (void)subscribeToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken deviceType:(NSString*)deviceType  completionBlock:(App42ResponseBlock)completionBlock;
 
 /**Unsubscribe from particular channel
  * 
@@ -111,7 +111,7 @@ extern NSString *const DEVELOPMENT;
  * @param userName username which want to unsubscribe
  * @return PushNotification Object
  */
-- (PushNotification*)unsubscribeDeviceToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken;
+- (void)unsubscribeDeviceToChannel:(NSString *)channel userName:(NSString *)userName deviceToken:(NSString*)deviceToken  completionBlock:(App42ResponseBlock)completionBlock;
 
 /** send push message to channel containing string
  * 
@@ -119,7 +119,7 @@ extern NSString *const DEVELOPMENT;
  * @param message push message in string format
  * @return PushNotification Object
  */
-- (PushNotification*)sendPushMessageToChannel:(NSString *)channel withMessage:(NSString *)message;
+- (void)sendPushMessageToChannel:(NSString *)channel withMessage:(NSString *)message  completionBlock:(App42ResponseBlock)completionBlock;
 
 /** Send Push Message to particular channel containing Json
  * 
@@ -127,26 +127,26 @@ extern NSString *const DEVELOPMENT;
  * @param message push message in Dictionary format
  * @return PushNotification Object
  */
-- (PushNotification*)sendPushMessageToChannel:(NSString *)channel withMessageDictionary:(NSDictionary *)message;
+- (void)sendPushMessageToChannel:(NSString *)channel withMessageDictionary:(NSDictionary *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /** Send push message to all your users 
  *
  * @param message push message
  * @return PushNotification Object
  */
-- (PushNotification *)sendPushMessageToAll:(NSString *)message;
+- (void)sendPushMessageToAll:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 /** Send push message to all iOS users
  *
  * @param message push message
  * @return PushNotification Object
  */
-- (PushNotification *)sendPushMessageToiOS:(NSString *)message;
+- (void)sendPushMessageToiOS:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 /** Send push message to all android users
  *
  * @param message push message
  * @return PushNotification Object
  */
-- (PushNotification *)sendPushMessageToAndroid:(NSString *)message;
+- (void)sendPushMessageToAndroid:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /** Send Push Message To paticular user in string format
  * 
@@ -154,7 +154,7 @@ extern NSString *const DEVELOPMENT;
  * @param message push message
  * @return PushNotification Object
  */
-- (PushNotification *)sendPushMessageToUser:(NSString *)userName message:(NSString *)message;
+- (void)sendPushMessageToUser:(NSString *)userName message:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**Send Push Message to particular user
  * 
@@ -162,7 +162,7 @@ extern NSString *const DEVELOPMENT;
  * @param message push Message in json
  * @return PushNotification Object
  */
-- (PushNotification *)sendPushMessageToUser:(NSString *)userName withMessageDictionary:(NSDictionary *)message;
+- (void)sendPushMessageToUser:(NSString *)userName withMessageDictionary:(NSDictionary *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send Push Message To target user using storage query.
@@ -175,7 +175,7 @@ extern NSString *const DEVELOPMENT;
  * @return PushNotification Object
  * @throws App42Exception
  */
--(PushNotification*)sendPushToTargetUsers:(NSString*)message dbName:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*) query;
+-(void)sendPushToTargetUsers:(NSString*)message dbName:(NSString*)dbName collectionName:(NSString*)collectionName query:(Query*) query completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send push message to list of specific users.
@@ -187,7 +187,7 @@ extern NSString *const DEVELOPMENT;
  * @return PushNotification Object
  * @throws App42Exception
  */
-- (PushNotification *)sendPushMessageToGroup:(NSArray*)userList message:(NSString *)message;
+- (void)sendPushMessageToGroup:(NSArray*)userList message:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -198,7 +198,7 @@ extern NSString *const DEVELOPMENT;
  * @throws App42Exception
  */
 
-- (PushNotification *)sendMessageToInActiveUsersFromDate:(NSDate*)startDate toDate:(NSDate*)endDate message:(NSString *)message;
+- (void)sendMessageToInActiveUsersFromDate:(NSDate*)startDate toDate:(NSDate*)endDate message:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send Push Message To user in async mode
@@ -213,7 +213,7 @@ extern NSString *const DEVELOPMENT;
  * @throws App42Exception
  */
 
-- (PushNotification *)scheduleMessageToUser:(NSString*)userName expiryDate:(NSDate*)expiryDate message:(NSString *)message;
+- (void)scheduleMessageToUser:(NSString*)userName expiryDate:(NSDate*)expiryDate message:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Delete your device from push-notification service.
@@ -226,7 +226,7 @@ extern NSString *const DEVELOPMENT;
  * @throws App42Exception
  */
 
--(App42Response*)deleteDeviceToken:(NSString*)userName  deviceToken:(NSString*) deviceToken;
+-(void)deleteDeviceToken:(NSString*)userName  deviceToken:(NSString*) deviceToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Delete all devices registered for single user in push-notification service.
@@ -236,7 +236,7 @@ extern NSString *const DEVELOPMENT;
  * @return App42Response Object
  * @throws App42Exception
  */
--(App42Response*)deleteAllDevices:(NSString*)userName;
+-(void)deleteAllDevices:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Unsubscribe your device from push-notification service.
@@ -245,7 +245,7 @@ extern NSString *const DEVELOPMENT;
  * @return
  * @throws App42Exception
  */
--(PushNotification*)unsubscribeDeviceForUser:(NSString *)userName deviceToken:(NSString*)deviceToken;
+-(void)unsubscribeDeviceForUser:(NSString *)userName deviceToken:(NSString*)deviceToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Resubscribe your device for push-notification service.
@@ -254,7 +254,7 @@ extern NSString *const DEVELOPMENT;
  * @return
  * @throws App42Exception
  */
--(PushNotification*)resubscribeDeviceForUser:(NSString *)userName deviceToken:(NSString*)deviceToken;
+-(void)resubscribeDeviceForUser:(NSString *)userName deviceToken:(NSString*)deviceToken completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Send push to device with matching deviceToken and userName.
@@ -263,7 +263,7 @@ extern NSString *const DEVELOPMENT;
  * @return
  * @throws App42Exception
  */
-- (PushNotification *)sendPushMessageToDevice:(NSString *)deviceToken userName:(NSString*)userName message:(NSString *)message;
+- (void)sendPushMessageToDevice:(NSString *)deviceToken userName:(NSString*)userName message:(NSString *)message completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -273,7 +273,7 @@ extern NSString *const DEVELOPMENT;
  * @return
  * @throws App42Exception
  */
-- (PushNotification *)updatePushBadgeforDevice:(NSString *)deviceToken userName:(NSString*)userName badges:(int)badges;
+- (void)updatePushBadgeforDevice:(NSString *)deviceToken userName:(NSString*)userName badges:(int)badges completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -282,7 +282,14 @@ extern NSString *const DEVELOPMENT;
  * @return
  * @throws App42Exception
  */
-- (PushNotification *)updatePushBadgeforUser:(NSString*)userName badges:(int)badges;
+- (void)updatePushBadgeforUser:(NSString*)userName badges:(int)badges completionBlock:(App42ResponseBlock)completionBlock;
 
+/**
+ *
+ * @param channelName
+ * @return
+ * @throws App42Exception
+ */
+-(void)deleteChannel:(NSString*)channelName completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

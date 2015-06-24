@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GeoResponseBuilder.h"
 #import "App42Service.h"
 
 @class Geo;
@@ -40,7 +39,7 @@
  * @return Geo object containing List of Geo Points that have been saved
  *
  */
--(Geo*)createGeoPoints:(NSString*)geoStorageName geoPointsList:(NSArray*)geoPointsList;
+-(void)createGeoPoints:(NSString*)geoStorageName geoPointsList:(NSArray*)geoPointsList completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Search the near by point in given range(In KM) from specified source
  * point. Points to be searched should already be stored on cloud using
@@ -60,7 +59,7 @@
  *
  *
  */
--(Geo*)getNearByPointsByMaxDistance:(NSString*)storageName latitude:(double)lat longitude:(double)lng distanceInKM:(double)distanceInKM;
+-(void)getNearByPointsByMaxDistance:(NSString*)storageName latitude:(double)lat longitude:(double)lng distanceInKM:(double)distanceInKM completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Search the near by point from specified source point. Points to be
  * searched should already be stored on cloud using unique storage name
@@ -79,7 +78,7 @@
  *         distance from source point.
  *
  */
--(Geo*)getNearByPoint:(NSString*)storageName latitude:(double)lat longitude:(double)lng resultLimit:(int)resultLimit;
+-(void)getNearByPoint:(NSString*)storageName latitude:(double)lat longitude:(double)lng resultLimit:(int)resultLimit completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Search the near by point from specified source point with in specified
  * radius. Points to be searched should already be stored on cloud using
@@ -100,14 +99,14 @@
  *         distance from source point.
  *
  */
--(Geo*)getPointsWithInCircle:(NSString*)storageName latitude:(double)lat longitude:(double)lng radiusInKM:(double)radiusInKM resultLimit:(int)resultLimit;
+-(void)getPointsWithInCircle:(NSString*)storageName latitude:(double)lat longitude:(double)lng radiusInKM:(double)radiusInKM resultLimit:(int)resultLimit completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetch the name of all storage stored on the cloud.
  *
  * @return Geo object containing List of all the storage created
  *
  */
--(NSArray*)getAllStorage;
+-(void)getAllStorage:(App42ResponseBlock)completionBlock;
 
 /**
  * Fetch the name of storage page-wise stored on the cloud.
@@ -119,7 +118,7 @@
  * @return Geo object containing List of all the storage created
  *
  */
--(NSArray*)getAllStorageByPaging:(int)max offset:(int)offset;
+-(void)getAllStorageByPaging:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Delete the specified Geo Storage from Cloud.
@@ -131,7 +130,7 @@
  *         been deleted.
  *
  */
--(App42Response*)deleteStorage:(NSString*)storageName;
+-(void)deleteStorage:(NSString*)storageName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get All Point from storage.
@@ -143,7 +142,7 @@
  *         storage
  *
  */
--(Geo*)getAllPoints:(NSString*)storageName;
+-(void)getAllPoints:(NSString*)storageName completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -160,7 +159,7 @@
  *         storage
  *
  */
--(Geo*)getAllPointsByPaging:(NSString*)storageName max:(int)max offset:(int)offset;
+-(void)getAllPointsByPaging:(NSString*)storageName max:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -175,6 +174,6 @@
  *         been deleted.
  *
  */
--(App42Response*)deleteGeoPoints:(NSArray*)geoPointsArray geoStorageName:(NSString*)geoStorageName;
+-(void)deleteGeoPoints:(NSArray*)geoPointsArray geoStorageName:(NSString*)geoStorageName completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

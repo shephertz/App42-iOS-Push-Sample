@@ -41,7 +41,7 @@ extern NSString *const GIF;
  * @return Avatar Object
  * @throws App42Exception
  */
--(Avatar*) createAvatarWithName:(NSString*)name userName:(NSString*)userName filePath:(NSString*)filePath description:(NSString*)description;
+-(void)createAvatarWithName:(NSString*)name userName:(NSString*)userName filePath:(NSString*)filePath description:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -59,7 +59,7 @@ extern NSString *const GIF;
  * @return Avatar Object
  * @throws App42Exception
  */
--(Avatar*)createAvatarFromFacebookWithName:(NSString*)avatarName userName:(NSString*)userName accessToken:(NSString*)accessToken description:(NSString*)description;
+-(void)createAvatarFromFacebookWithName:(NSString*)avatarName userName:(NSString*)userName accessToken:(NSString*)accessToken description:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Create avatar from any web media using URL
@@ -75,7 +75,7 @@ extern NSString *const GIF;
  * @return Avatar Object
  * @throws App42Exception
  */
--(Avatar*)createAvatarFromWebURLWithName:(NSString*)avatarName userName:(NSString*)userName webUrl:(NSString*)webUrl description:(NSString*)description;
+-(void)createAvatarFromWebURLWithName:(NSString*)avatarName userName:(NSString*)userName webUrl:(NSString*)webUrl description:(NSString*)description completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Get detail description of avatar
@@ -87,7 +87,7 @@ extern NSString *const GIF;
  * @return Avatar Object
  * @throws App42Exception
  */
--(Avatar*)getAvatarByName:(NSString*)avatarName userName:(NSString*)userName;
+-(void)getAvatarByName:(NSString*)avatarName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * View all avatars.
@@ -97,7 +97,7 @@ extern NSString *const GIF;
  * @return Array of Avatar Objects
  * @throws App42Exception
  */
--(NSArray*)getAllAvatarsForUser:(NSString*)userName;
+-(void)getAllAvatarsForUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * View the latest avatar uploaded by user.
@@ -108,7 +108,7 @@ extern NSString *const GIF;
  * @return Avatar Object
  * @throws App42Exception
  */
--(Avatar*)getCurrentAvatar:(NSString*)userName;
+-(void)getCurrentAvatar:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * Change your current avatar from existing avatars in app.
@@ -120,7 +120,7 @@ extern NSString *const GIF;
  * @return Avatar Object
  * @throws App42Exception
  */
--(Avatar*)changeCurrentAvatarWithName:(NSString*)avatarName forUser:(NSString*)userName;
+-(void)changeCurrentAvatarWithName:(NSString*)avatarName forUser:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  *
@@ -132,5 +132,5 @@ extern NSString *const GIF;
  * @return
  * @throws App42Exception
  */
--(Avatar*)createAvatarFromFileDataWithName:(NSString*)avatarName userName:(NSString*)userName fileData:(NSData*)fileData description:(NSString*)description extension:(NSString*)extension;
+-(void)createAvatarFromFileDataWithName:(NSString*)avatarName userName:(NSString*)userName fileData:(NSData*)fileData description:(NSString*)description extension:(NSString*)extension completionBlock:(App42ResponseBlock)completionBlock;
 @end

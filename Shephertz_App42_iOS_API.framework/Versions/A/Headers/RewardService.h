@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RewardResponseBuilder.h"
 #import "App42Service.h"
 
 @class Reward;
@@ -50,7 +49,7 @@
  * @return Reward object containing the reward that has been created
  * 
  */
--(Reward*)createReward:(NSString*)rewardName rewardDescription:(NSString*)rewardDescription;
+-(void)createReward:(NSString*)rewardName rewardDescription:(NSString*)rewardDescription completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the count of all the Rewards
  *
@@ -58,14 +57,14 @@
  *         App
  *
  */
--(App42Response*)getAllRewardsCount;
+-(void)getAllRewardsCount:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all the Rewards
  *
  * @return List of Reward objects containing all the rewards of the App
  *
  */
--(NSArray*)getAllRewards;
+-(void)getAllRewards:(App42ResponseBlock)completionBlock;
 /**
  * Fetches all the Rewards by paging.
  *
@@ -77,7 +76,7 @@
  * @return List of Reward objects containing all the rewards of the App
  *
  */
--(NSArray*)getAllRewards:(int)max offset:(int)offset;
+-(void)getAllRewards:(int)max offset:(int)offset completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Retrieves the reward for the specified name
  *
@@ -87,7 +86,7 @@
  * @return Reward object containing the reward based on the rewardName
  *
  */
--(Reward*)getRewardByName:(NSString*)rewardName;
+-(void)getRewardByName:(NSString*)rewardName completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Adds the reward points to an users account. Reward Points can be earned
  * by the user which can be redeemed later.
@@ -104,7 +103,7 @@
  * @return Reward object containing the reward points that has been added
  *
  */
--(Reward*)earnRewards:(NSString*)gameName gameUserName:(NSString*)gameUserName rewardName:(NSString*)rewardName rewardPoints:(double)rewardsPoints;
+-(void)earnRewards:(NSString*)gameName gameUserName:(NSString*)gameUserName rewardName:(NSString*)rewardName rewardPoints:(double)rewardsPoints completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Deducts the reward points from the earned rewards by a user.
  *
@@ -120,7 +119,7 @@
  * @return Reward object containing the reward points that has been deducted
  *
  */
--(Reward*)redeemRewards:(NSString*)gameName gameUserName:(NSString*)gameUserName rewardName:(NSString*)rewardName rewardPoints:(double)rewardsPoints;
+-(void)redeemRewards:(NSString*)gameName gameUserName:(NSString*)gameUserName rewardName:(NSString*)rewardName rewardPoints:(double)rewardsPoints completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Fetches the reward points for a particular user
  *
@@ -134,7 +133,7 @@
  * @throws App42Exception
  *
  */
--(Reward*)getGameRewardPointsForUser:(NSString*)gameName userName:(NSString*)userName;
+-(void)getGameRewardPointsForUser:(NSString*)gameName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 /**
  * This function provides a list of specified number of top reward earners
@@ -150,7 +149,7 @@
  * @return ArrayList of Reward object
  * @throws App42Exception
  */
--(NSArray*)getTopNRewardEarners:(NSString*)gameName rewardName:(NSString*)rewardName max:(int)max;
+-(void)getTopNRewardEarners:(NSString*)gameName rewardName:(NSString*)rewardName max:(int)max completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -164,7 +163,7 @@
  * @return ArrayList of Reward object
  * @throws App42Exception
  */
--(NSMutableArray*)getAllRewardsByUser:(NSString*)userName rewardName:(NSString*)rewardName;
+-(void)getAllRewardsByUser:(NSString*)userName rewardName:(NSString*)rewardName completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -181,7 +180,7 @@
  * @return ArrayList of Reward object
  * @throws App42Exception
  */
--(NSArray*)getTopNRewardEarnersByGroup:(NSString*)gameName rewardName:(NSString*)rewardName userList:(NSArray*)userList;
+-(void)getTopNRewardEarnersByGroup:(NSString*)gameName rewardName:(NSString*)rewardName userList:(NSArray*)userList completionBlock:(App42ResponseBlock)completionBlock;
 
 
 /**
@@ -198,6 +197,6 @@
  * @return Reward object containing the ranking for the specified user
  * @throws App42Exception
  */
--(Reward*) getUserRankingOnReward:(NSString*)gameName rewardName:(NSString*)rewardName userName:(NSString*)userName;
+-(void) getUserRankingOnReward:(NSString*)gameName rewardName:(NSString*)rewardName userName:(NSString*)userName completionBlock:(App42ResponseBlock)completionBlock;
 
 @end

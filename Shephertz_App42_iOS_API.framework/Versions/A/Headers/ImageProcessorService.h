@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ImageProcessorResponseBuilder.h"
 #import "Image.h"
 #import "App42Service.h"
 /**
@@ -23,7 +22,6 @@
  */
 @interface ImageProcessorService : App42Service
 {
-    
     
 }
 
@@ -48,7 +46,7 @@
  *
  *
  */
--(Image *)resize:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height;
+-(void)resize:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Creates a thumbnail of the image. There is a difference between thumbnail
  * and resize The thumbnail operation is optimized for speed, it removes
@@ -70,7 +68,7 @@
  *          images
  *
  */
--(Image *)thumbnail:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height;
+-(void)thumbnail:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Scales the image based on width and height. Returns the original image
  * url and converted image url. Images are stored in the cloud and can be
@@ -90,7 +88,7 @@
  *          images
  *
  */
--(Image *)scale:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height;
+-(void)scale:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Crops image based on width, height and x, y coordinates. Returns the
  * original image url and converted image url. Images are stored in the
@@ -114,7 +112,7 @@
  *          images
  *
  */
--(Image *)crop:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height x:(int)x y:(int)y;
+-(void)crop:(NSString *)name imagePath:(NSString*)imagePath width:(int)width height:(int)height x:(int)x y:(int)y completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Resize image by Percentage. Returns the original image url and converted
  * image url. Images are stored in the cloud and can be accessed through the
@@ -131,7 +129,7 @@
  *          images
  *
  */
--(Image *)resizeByPercentage:(NSString *)name imagePath:(NSString*)imagePath percentage:(double)percentage;
+-(void)resizeByPercentage:(NSString *)name imagePath:(NSString*)imagePath percentage:(double)percentage completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Creates a thumbnail of the image by Percentage. There is a difference
  * between thumbnail and resize The thumbnail operation is optimized for
@@ -152,7 +150,7 @@
  *          images
  *
  */
--(Image *)thumbnailByPercentage:(NSString *)name imagePath:(NSString*)imagePath percentage:(double)percentage;
+-(void)thumbnailByPercentage:(NSString *)name imagePath:(NSString*)imagePath percentage:(double)percentage completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Scales the image by Percentage. Returns the original image url and
  * converted image url. Images are stored in the cloud and can be accessed
@@ -169,7 +167,7 @@
  *          images
  *
  */
--(Image *)scaleByPercentage:(NSString *)name imagePath:(NSString*)imagePath percentage:(double)percentage;
+-(void)scaleByPercentage:(NSString *)name imagePath:(NSString*)imagePath percentage:(double)percentage completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Resize image via Stream. Returns the original image url and converted image url.
  * Images are stored on the cloud and can be accessed through the urls
@@ -188,7 +186,7 @@
  *          images
  *
  */
--(Image *)resize:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height;
+-(void)resize:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Creates a thumbnail of the image via Stream. There is a difference between thumbnail
  * and resize The thumbnail operation is optimized for speed, it removes
@@ -211,7 +209,7 @@
  *          images
  *
  */
--(Image *)thumbnail:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height;
+-(void)thumbnail:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Scales the image based on width and height via Stream. Returns the original image
  * url and converted image url. Images are stored in the cloud and can be
@@ -231,7 +229,7 @@
  *          images
  *
  */
--(Image *)scale:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height;
+-(void)scale:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Crops image based on width, height and x, y coordinates via Stream. Returns the
  * original image url and converted image url. Images are stored in the
@@ -255,7 +253,7 @@
  *          images
  *
  */
--(Image *)crop:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height x:(int)x y:(int)y;
+-(void)crop:(NSString *)name imageData:(NSData*)imageData width:(int)width height:(int)height x:(int)x y:(int)y completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Resize image by Percentage via Stream. Returns the original image url and converted
  * image url. Images are stored in the cloud and can be accessed through the
@@ -272,7 +270,7 @@
  *          images
  *
  */
--(Image *)resizeByPercentage:(NSString *)name imageData:(NSData*)imageData percentage:(double)percentage;
+-(void)resizeByPercentage:(NSString *)name imageData:(NSData*)imageData percentage:(double)percentage completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Creates a thumbnail of the image by Percentage via Stream. There is a difference
  * between thumbnail and resize The thumbnail operation is optimized for
@@ -294,7 +292,7 @@
  *          images
  *
  */
--(Image *)thumbnailByPercentage:(NSString *)name imageData:(NSData*)imageData percentage:(double)percentage;
+-(void)thumbnailByPercentage:(NSString *)name imageData:(NSData*)imageData percentage:(double)percentage completionBlock:(App42ResponseBlock)completionBlock;
 /**
  * Scales the image by Percentage via Stream. Returns the original image url and
  * converted image url. Images are stored in the cloud and can be accessed
@@ -311,7 +309,7 @@
  *          images
  *
  */
--(Image *)scaleByPercentage:(NSString *)name imageData:(NSData*)imageData percentage:(double)percentage;
+-(void)scaleByPercentage:(NSString *)name imageData:(NSData*)imageData percentage:(double)percentage completionBlock:(App42ResponseBlock)completionBlock;
 
 @end
 
